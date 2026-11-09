@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Hisab App – 5 Brother’s Fitness Club</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#080808;color:#fff;font-family:'Segoe UI',system-ui,Arial,sans-serif;min-height:100vh;padding:12px;padding-bottom:90px}
+.wrap{max-width:480px;margin:0 auto}
+.card{background:#121005;border:2px solid #ffcc00;border-radius:18px;padding:14px;box-shadow:0 0 28px rgba(255,204,0,.15);margin-bottom:14px}
+.header{text-align:center;border-bottom:2px dashed #ffcc00;padding-bottom:10px;margin-bottom:12px}
+.header h1{color:#ffcc00;font-size:18px;font-weight:900}
+.tag{color:#e6c300;font-size:10px;font-weight:700;margin-top:4px;background:rgba(255,204,0,.12);display:inline-block;padding:2px 10px;border-radius:10px}
+.main-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.main-tab{background:#181818;border:1.5px solid #444;color:#bbb;padding:12px 6px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;text-align:center}
+.main-tab.active{background:#ffcc00;color:#000;border-color:#ffcc00}
+.hide{display:none!important}
+.field{margin-bottom:10px}
+label{display:block;font-size:11px;color:#ddd;margin-bottom:3px;font-weight:600}
+label span{color:#ff3333}
+input,select,textarea{width:100%;background:#181818;border:1.5px solid #444;color:#fff;padding:10px;border-radius:8px;font-size:14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#ffcc00}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn{border:none;border-radius:8px;padding:12px;font-weight:800;font-size:14px;cursor:pointer;width:100%}
+.btn-gold{background:#ffcc00;color:#000}
+.btn-green{background:#25D366;color:#000}
+.btn-red{background:#ff4444;color:#fff}
+.btn-dark{background:#333;color:#fff}
+.btn-sm{width:auto;padding:7px 12px;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{background:#222;border:1px solid #555;color:#ffcc00;padding:5px 10px;border-radius:20px;font-size:11px;cursor:pointer}
+.chip:active{background:#ffcc00;color:#000}
+.balance-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+.bal{background:#181818;border-radius:10px;padding:10px 6px;text-align:center;border:1px solid #333}
+.bal b{display:block;font-size:15px;font-weight:900}
+.bal span{font-size:10px;color:#888}
+.bal.in b{color:#00ff99}.bal.out b{color:#ff6666}.bal.pocket b{color:#ffcc00}
+.ud-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.ud-box{background:#181818;border-radius:10px;padding:12px;text-align:center;border:1.5px solid #333}
+.ud-box.lena{border-color:#00cc88}.ud-box.dena{border-color:#ff6666}
+.ud-box b{display:block;font-size:16px;font-weight:900}
+.ud-box span{font-size:10px;color:#aaa}
+.fab{position:fixed;left:0;right:0;bottom:0;padding:10px 12px;background:#0a0a0a;border-top:1px solid #333;z-index:10}
+.fab-inner{max-width:480px;margin:0 auto;display:flex;gap:8px}
+.fab button{flex:1;padding:14px 6px;font-weight:800;font-size:14px;border-radius:10px;border:0;cursor:pointer}
+.list-item{background:#181818;border:1px solid #333;border-radius:10px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.list-item .left{min-width:0;flex:1}
+.list-item .left b{display:block;font-size:14px;overflow-wrap:anywhere}
+.list-item .left small{color:#888;font-size:11px}
+.list-item .amt{font-weight:900;font-size:15px;white-space:nowrap}
+.list-item .amt.plus{color:#00ff99}.list-item .amt.minus{color:#ff6666}
+.list-item.done{opacity:.45}
+.acts{display:flex;gap:6px;margin-top:6px}
+.empty{text-align:center;color:#666;padding:30px 10px;font-size:14px}
+.toast{position:fixed;left:50%;top:20px;transform:translateX(-50%);background:#ffcc00;color:#000;padding:10px 18px;border-radius:30px;font-weight:700;font-size:13px;z-index:50;display:none}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:30;display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:#121005;border:2px solid #ffcc00;border-bottom:0;border-radius:18px 18px 0 0;padding:16px 14px calc(16px + env(safe-area-inset-bottom,0px));width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
+.sheet h2{color:#ffcc00;font-size:16px;margin-bottom:12px}
+.sec-title{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px;font-weight:800;font-size:14px;color:#ffcc00}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="wrap">
+  <div class="card">
+    <div class="header">
+      <h1>🏋️ 5 Brother’s Fitness Club</h1>
+      <div class="tag">हिसाब ऐप</div>
+    </div>
+
+    <div class="main-tabs">
+      <div class="main-tab active" id="t-hisab" onclick="tab('hisab')">💰 हिसाब</div>
+      <div class="main-tab" id="t-udhaar" onclick="tab('udhaar')">🤝 उधार</div>
+    </div>
+
+    <div id="p-hisab">
+      <div class="balance-box">
+        <div class="bal in"><b id="sIn">₹0</b><span>आमदनी</span></div>
+        <div class="bal out"><b id="sOut">₹0</b><span>खर्चा</span></div>
+        <div class="bal pocket"><b id="sBal">₹0</b><span>जेब में</span></div>
+      </div>
+      <div class="field">
+        <label>महीना चुनें</label>
+        <select id="month" onchange="render()"></select>
+      </div>
+      <div class="sec-title"><span>एंट्री लिस्ट</span><button class="btn btn-green btn-sm" onclick="share()">WhatsApp</button></div>
+      <div id="list"></div>
+    </div>
+
+    <div id="p-udhaar" class="hide">
+      <div class="ud-row">
+        <div class="ud-box lena"><b id="uLena" style="color:#00cc88">₹0</b><span>लेना बाकी</span></div>
+        <div class="ud-box dena"><b id="uDena" style="color:#ff6666">₹0</b><span>देना बाकी</span></div>
+      </div>
+      <div class="sec-title"><span>उधार लिस्ट</span></div>
+      <div id="ulist"></div>
+    </div>
+  </div>
+</div>
+
+<div class="fab"><div class="fab-inner" id="fab"></div></div>
+
+<div class="ov" id="ov" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet">
+    <h2 id="sTitle">नई एंट्री</h2>
+    <div class="field hide" id="fName">
+      <label>नाम <span>*</span></label>
+      <input id="name" placeholder="किसका हिसाब?">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>रकम (₹) <span>*</span></label>
+        <input id="amt" type="number" inputmode="decimal" placeholder="0">
+      </div>
+      <div class="field">
+        <label>तारीख</label>
+        <input id="date" type="date">
+      </div>
+    </div>
+    <div class="field">
+      <label>विवरण</label>
+      <input id="note" placeholder="जैसे: फीस, बिजली बिल">
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="row">
+      <button class="btn btn-dark" onclick="closeSheet()">रद्द करें</button>
+      <button class="btn btn-gold" onclick="save()">सेव करें</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var KEY='hisab_5bro_v1', data=[], curTab='hisab', curType='in';
+var TITLES={in:'+ आमदनी जोड़ें',out:'− खर्चा जोड़ें',lena:'+ लेना (उधार दिया)',dena:'+ देना (उधार लिया)'};
+var CHIPS={in:['मेंबर फीस','सप्लीमेंट','एडमिशन','पर्सनल ट्रेनिंग'],out:['बिजली बिल','किराया','सैलरी','मशीन रिपेयर','सफाई'],lena:[],dena:[]};
+
+try{data=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){data=[]}
+function store(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function money(n){return '₹'+Number(n).toLocaleString('en-IN')}
+function today(){var d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function fmtDate(s){var p=s.split('-');return p[2]+'/'+p[1]+'/'+p[0]}
+function toast(m){var t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(function(){t.style.display='none'},1800)}
+
+function tab(n){
+  curTab=n;
+  $('t-hisab').classList.toggle('active',n==='hisab');
+  $('t-udhaar').classList.toggle('active',n==='udhaar');
+  $('p-hisab').classList.toggle('hide',n!=='hisab');
+  $('p-udhaar').classList.toggle('hide',n!=='udhaar');
+  fabs();render();
+}
+function fabs(){
+  var f=$('fab');
+  f.innerHTML='';
+  var defs=curTab==='hisab'
+    ?[['in','+ आमदनी','#00ff99','#000'],['out','− खर्चा','#ff4444','#fff']]
+    :[['lena','+ लेना','#00cc88','#000'],['dena','+ देना','#ff6666','#000']];
+  defs.forEach(function(d){
+    var b=document.createElement('button');
+    b.textContent=d[1];b.style.background=d[2];b.style.color=d[3];
+    b.onclick=function(){openSheet(d[0])};
+    f.appendChild(b);
+  });
+}
+function openSheet(type){
+  curType=type;
+  $('sTitle').textContent=TITLES[type];
+  $('fName').classList.toggle('hide',type!=='lena'&&type!=='dena');
+  $('name').value='';$('amt').value='';$('note').value='';$('date').value=today();
+  var c=$('chips');c.innerHTML='';
+  CHIPS[type].forEach(function(t){
+    var s=document.createElement('span');s.className='chip';s.textContent=t;
+    s.onclick=function(){$('note').value=t};c.appendChild(s);
+  });
+  $('ov').classList.add('on');
+  setTimeout(function(){$(type==='lena'||type==='dena'?'name':'amt').focus()},50);
+}
+function closeSheet(){$('ov').classList.remove('on')}
+function save(){
+  var amt=parseFloat($('amt').value),isU=(curType==='lena'||curType==='dena'),name=$('name').value.trim();
+  if(!amt||amt<=0){toast('सही रकम डालें');return}
+  if(isU&&!name){toast('नाम डालें');return}
+  data.push({id:Date.now(),type:curType,amt:amt,note:$('note').value.trim(),name:name,date:$('date').value||today(),done:false});
+  store();closeSheet();render();toast('सेव हो गया ✅');
+}
+function del(id){
+  if(!confirm('यह एंट्री हटाएं?'))return;
+  data=data.filter(function(e){return e.id!==id});store();render();toast('हटा दिया');
+}
+function settle(id){
+  data.forEach(function(e){if(e.id===id)e.done=!e.done});store();render();
+}
+function months(){
+  var m={};
+  data.forEach(function(e){if(e.type==='in'||e.type==='out')m[e.date.slice(0,7)]=1});
+  m[today().slice(0,7)]=1;
+  return Object.keys(m).sort().reverse();
+}
+var MN=['जनवरी','फ़रवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितंबर','अक्टूबर','नवंबर','दिसंबर'];
+function mLabel(k){var p=k.split('-');return MN[+p[1]-1]+' '+p[0]}
+function fillMonths(){
+  var s=$('month'),keep=s.value,ms=months();
+  s.innerHTML='';
+  var all=document.createElement('option');all.value='all';all.textContent='सभी महीने';s.appendChild(all);
+  ms.forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=mLabel(k);s.appendChild(o)});
+  s.value=keep&&(keep==='all'||ms.indexOf(keep)>-1)?keep:ms[0];
+}
+function item(e,withSettle){
+  var d=document.createElement('div');d.className='list-item'+(e.done?' done':'');
+  var left=document.createElement('div');left.className='left';
+  var b=document.createElement('b');
+  b.textContent=(e.name?e.name+(e.note?' – '+e.note:''):(e.note||(e.type==='in'?'आमदनी':'खर्चा')));
+  var sm=document.createElement('small');sm.textContent=fmtDate(e.date)+(e.done?' • चुकता':'');
+  left.appendChild(b);left.appendChild(sm);
+  var acts=document.createElement('div');acts.className='acts';
+  if(withSettle){
+    var s=document.createElement('button');s.className='btn btn-dark btn-sm';
+    s.textContent=e.done?'फिर खोलें':'चुकता';s.onclick=function(){settle(e.id)};acts.appendChild(s);
+  }
+  var x=document.createElement('button');x.className='btn btn-red btn-sm';x.textContent='हटाएं';
+  x.onclick=function(){del(e.id)};acts.appendChild(x);
+  left.appendChild(acts);
+  var a=document.createElement('div');
+  var plus=(e.type==='in'||e.type==='lena');
+  a.className='amt '+(plus?'plus':'minus');
+  a.textContent=(plus?'+':'−')+money(e.amt);
+  d.appendChild(left);d.appendChild(a);
+  return d;
+}
+function hisabRows(){
+  var m=$('month').value;
+  return data.filter(function(e){
+    return (e.type==='in'||e.type==='out')&&(m==='all'||e.date.slice(0,7)===m);
+  }).sort(function(a,b){return b.date.localeCompare(a.date)||b.id-a.id});
+}
+function render(){
+  fillMonths();
+  var rows=hisabRows(),inn=0,out=0;
+  rows.forEach(function(e){if(e.type==='in')inn+=e.amt;else out+=e.amt});
+  $('sIn').textContent=money(inn);$('sOut').textContent=money(out);$('sBal').textContent=money(inn-out);
+  var L=$('list');L.innerHTML='';
+  if(!rows.length)L.innerHTML='<div class="empty">अभी कोई एंट्री नहीं।<br>नीचे बटन से जोड़ें।</div>';
+  rows.forEach(function(e){L.appendChild(item(e,false))});
+
+  var u=data.filter(function(e){return e.type==='lena'||e.type==='dena'}).sort(function(a,b){return (a.done-b.done)||b.id-a.id});
+  var le=0,de=0;
+  u.forEach(function(e){if(!e.done){if(e.type==='lena')le+=e.amt;else de+=e.amt}});
+  $('uLena').textContent=money(le);$('uDena').textContent=money(de);
+  var U=$('ulist');U.innerHTML='';
+  if(!u.length)U.innerHTML='<div class="empty">कोई उधार नहीं।</div>';
+  u.forEach(function(e){U.appendChild(item(e,true))});
+}
+function share(){
+  var rows=hisabRows(),inn=0,out=0,t='*5 Brother’s Fitness Club – हिसाब*\n'+($('month').value==='all'?'सभी महीने':mLabel($('month').value))+'\n\n';
+  rows.forEach(function(e){
+    if(e.type==='in')inn+=e.amt;else out+=e.amt;
+    t+=fmtDate(e.date)+' '+(e.type==='in'?'➕':'➖')+' '+money(e.amt)+(e.note?' ('+e.note+')':'')+'\n';
+  });
+  t+='\nआमदनी: '+money(inn)+'\nखर्चा: '+money(out)+'\n*जेब में: '+money(inn-out)+'*';
+  window.open('https://wa.me/?text='+encodeURIComponent(t),'_blank');
+}
+fabs();render();
+</script>
+</body>
+</html>
