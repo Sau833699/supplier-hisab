@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Supplier Hisab – 5 Brother’s</title><style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#0b0904;color:#fff;font-family:system-ui,-apple-system,sans-serif;padding:12px 12px 40px}
+.app{border:3px solid #ffcc00;border-radius:26px;padding:16px;background:#100d03;max-width:520px;margin:auto}
+h1{text-align:center;color:#ffcc00;font-size:25px}
+.tag{display:table;margin:8px auto 14px;background:#2a2200;color:#ffcc00;padding:5px 16px;border-radius:20px;font-weight:700;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.st{background:#161616;border:2px solid #333;border-radius:16px;padding:12px 4px;text-align:center}
+.st b{display:block;font-size:19px}.st span{font-size:12px;color:#aaa}
+.g{color:#2dff8f}.r{color:#ff6b6b}.y{color:#ffcc00}
+.bigs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.big{border:0;border-radius:18px;padding:22px 8px;color:#fff;font-size:18px;font-weight:800}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:13px 2px;border-radius:14px;border:2px solid #444;background:#161616;color:#fff;font-weight:800;font-size:14px}
+.tabs .on{background:#ffcc00;color:#000;border-color:#ffcc00}
+.box{border:2px solid #333;border-radius:20px;padding:14px;background:#141414;margin-bottom:12px}
+.box h3{color:#ffcc00;border-left:4px solid #ffcc00;padding-left:10px;margin-bottom:10px;font-size:17px}
+label{display:block;font-weight:700;margin:10px 0 6px;font-size:14px}
+input,select,textarea{width:100%;background:#0e0e0e;color:#fff;border:2px solid #444;border-radius:14px;padding:13px;font-size:16px}
+input:focus,select:focus,textarea:focus{border-color:#ffcc00;outline:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{padding:9px 14px;border-radius:20px;border:2px solid #444;background:#181818;color:#ffcc00;font-weight:700;font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.it{display:grid;grid-template-columns:1fr 78px 40px;gap:6px;margin-bottom:6px}
+.it.s{grid-template-columns:1fr 54px 76px 76px 36px}
+.it input{padding:11px 8px;font-size:15px}
+.x{background:#ff4747;border:0;border-radius:12px;color:#fff;font-weight:900}
+.b{border:0;border-radius:16px;padding:16px;font-size:17px;font-weight:800;width:100%;margin-top:10px}
+.save{background:#333;color:#fff}.rec{background:#25e07a;color:#000}.clr{background:#2b2b2b;color:#fff}.add{background:#2b2b2b;color:#fff;width:auto;padding:11px 16px;font-size:14px}
+.li{background:#181818;border:1px solid #333;border-radius:14px;padding:12px;margin-bottom:8px}
+.li .t{display:flex;justify-content:space-between;gap:8px;font-weight:800}
+.li small{color:#999;display:block;margin-top:3px}
+.mini{border:0;border-radius:10px;padding:8px 12px;font-weight:800;font-size:13px;margin:8px 6px 0 0;background:#333;color:#fff}
+.tot{display:flex;justify-content:space-between;padding:6px 0;font-weight:800}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:20;display:none;overflow:auto;padding:14px}.ov.on{display:block}
+.paper{background:#fff;color:#000;max-width:420px;margin:0 auto 10px;padding:16px;border-radius:8px;font-size:14px}
+.paper h2{text-align:center;font-size:17px}.paper .c{text-align:center;font-size:12px;color:#444}
+.paper table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}.paper td,.paper th{border-bottom:1px dashed #999;padding:4px 2px;text-align:left}
+.paper .n{text-align:right}.paper .tr{display:flex;justify-content:space-between;font-weight:800;padding:2px 0}
+.ra{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:420px;margin:auto}.ra button{padding:14px 4px;border:0;border-radius:12px;font-weight:800}
+.hide{display:none!important}.empty{text-align:center;color:#777;padding:24px}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#ffcc00;color:#000;padding:10px 18px;border-radius:30px;font-weight:800;z-index:50;display:none}
+@media print{body *{visibility:hidden}.paper,.paper *{visibility:visible}.paper{position:absolute;left:0;top:0;width:100%;max-width:none}}
+</style></head><body>
+<div id="toast"></div>
+<div class="ov" id="ov"><div class="paper" id="paper"></div>
+<div class="ra"><button style="background:#ffcc00" onclick="window.print()">🖨️ Print / PDF</button><button style="background:#25e07a" onclick="shareRc()">WhatsApp</button><button style="background:#444;color:#fff" onclick="$('ov').classList.remove('on')">Band</button></div></div>
+<div class="app">
+<h1>🏭 Supplier Hisab</h1><div class="tag">Supplement · Kya liya · Kitna · Kab · Kitne ka</div>
+<div class="stats"><div class="st"><b class="y" id="sT">₹0</b><span>Total khareed</span></div><div class="st"><b class="g" id="sPd">₹0</b><span>Paise diye</span></div><div class="st" style="border-color:#ff6b6b"><b class="r" id="sB">₹0</b><span>Baaki dena</span></div></div>
+<div class="tabs" style="margin-top:12px"><button id="tb-add" class="on" onclick="tab('add')">➕ Naya Bill</button><button id="tb-list" onclick="tab('list')">📒 Bills</button><button id="tb-sup" onclick="tab('sup')">🏭 Supplier</button><button id="tb-rep" onclick="tab('rep')">📊 Report</button></div>
+<div id="p-add" class="box"><h3>Supplier se maal liya</h3>
+<label>Supplier ka naam *</label><input id="sn" placeholder="Supplier / Distributor">
+<div class="chips" id="sch"></div>
+<div class="two"><div><label>Date</label><input type="date" id="date"></div><div><label>Time</label><input type="time" id="time"></div></div>
+<div class="box" style="margin-top:12px"><h3>📦 Product list</h3><div style="font-size:12px;color:#999;margin-bottom:6px">Product · Qty · MRP · Apna rate (kitne mein liya)</div><div id="rows"></div><button class="b add" onclick="addRow()">➕ Aur product add</button></div>
+<div class="box"><div class="tot"><span>Bill total (apna rate)</span><span class="y" id="bt">₹0</span></div><div class="tot"><span>MRP total</span><span id="mt">₹0</span></div><div class="tot"><span>Bachat (MRP − rate)</span><span class="g" id="sv">₹0</span></div></div>
+<div class="two"><div><label>Abhi diye (₹)</label><input id="paid" type="number" inputmode="decimal" placeholder="0" oninput="calc()"></div><div><label>Kaise diye</label><select id="mode"><option>💵 Cash</option><option>📱 Online</option><option>📝 Udhar (baad mein)</option></select></div></div>
+<div class="tot"><span>Baaki</span><span class="r" id="bl">₹0</span></div>
+<label>Note (optional)</label><textarea id="note" rows="2" placeholder="Bill no., batch, expiry..."></textarea>
+<div class="two"><button class="b save" onclick="save(0)">💾 Only Save</button><button class="b rec" onclick="save(1)">✅ Save + Receipt</button></div>
+<button class="b clr" onclick="reset()">Clear</button></div>
+<div id="p-list" class="hide"></div><div id="p-sup" class="hide"></div><div id="p-rep" class="hide"></div>
+</div><datalist id="pl"></datalist><script>
+const $=id=>document.getElementById(id);
+const rs=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=v=>parseFloat(v)||0;
+let D=[];try{D=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+const put=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const tdy=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const tm=()=>{const d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())};
+const fd=s=>s.split('-').reverse().join('/');
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>t.style.display='none',1800)}
+function tab(n){TABS.forEach(t=>{$('p-'+t).classList.toggle('hide',t!==n);$('tb-'+t).classList.toggle('on',t===n)});if(n!=='add')draw()}
+function chipsFill(id,arr,fn){const c=$(id);c.innerHTML='';arr.forEach(t=>{const s=document.createElement('span');s.className='chip';s.textContent=t;s.onclick=()=>fn(t);c.appendChild(s)})}
+function openRc(html,text){$('paper').innerHTML=html;$('ov').dataset.t=text;$('ov').classList.add('on')}
+function shareRc(){window.open('https://wa.me/?text='+encodeURIComponent($('ov').dataset.t),'_blank')}
+const HEAD='<h2>5 BROTHER\u2019S FITNESS CLUB</h2><div class="c">उमराव खेड़ा, अकरमपुर, उन्नाव · 9990954574</div><hr style="margin:8px 0">';
+
+const KEY='supplier_5bro_v1',TABS=['add','list','sup','rep'];
+const PR=['Whey Protein','Mass Gainer','Creatine','BCAA','Pre-Workout','Multivitamin','Fish Oil','Shaker'];
+function sups(){return [...new Set(D.map(b=>b.sup))]}
+function reset(){$('sn').value='';$('paid').value='';$('note').value='';$('date').value=tdy();$('time').value=tm();$('rows').innerHTML='';addRow();calc();chipsFill('sch',sups(),v=>$('sn').value=v)}
+function addRow(){const d=document.createElement('div');d.className='it s';d.innerHTML='<input class="p" list="pl" placeholder="Product"><input class="q" type="number" inputmode="decimal" placeholder="Qty" value="1"><input class="m" type="number" inputmode="decimal" placeholder="MRP"><input class="r" type="number" inputmode="decimal" placeholder="Rate"><button class="x" onclick="this.parentNode.remove();calc()">✖</button>';d.querySelectorAll('input').forEach(i=>i.oninput=calc);$('rows').appendChild(d)}
+function items(){return [...document.querySelectorAll('#rows .it')].map(r=>({p:r.children[0].value.trim(),q:num(r.children[1].value),m:num(r.children[2].value),r:num(r.children[3].value)})).filter(i=>i.p&&i.q>0&&(i.r>0||i.m>0)).map(i=>(i.r||(i.r=i.m),i))}
+const tot=b=>b.items.reduce((s,i)=>s+i.q*i.r,0),mrp=b=>b.items.reduce((s,i)=>s+i.q*(i.m||i.r),0);
+function calc(){const it=items(),b={items:it},t=tot(b),m=mrp(b);$('bt').textContent=rs(t);$('mt').textContent=rs(m);$('sv').textContent=rs(m-t);$('bl').textContent=rs(t-num($('paid').value))}
+function save(rc){const sup=$('sn').value.trim(),it=items();if(!sup){toast('Supplier ka naam daalo');return}if(!it.length){toast('Kam se kam 1 product daalo');return}
+const t=tot({items:it}),paid=Math.min(num($('paid').value),t);
+const b={id:Date.now(),sup:sup,date:$('date').value||tdy(),time:$('time').value||tm(),items:it,paid:paid,mode:$('mode').value,note:$('note').value.trim(),pays:paid?[{a:paid,d:$('date').value||tdy()}]:[]};
+D.push(b);put();draw();toast('Save ho gaya ✅');reset();if(rc)receipt(b.id)}
+function receipt(id){const b=D.find(x=>x.id===id);if(!b)return;const t=tot(b),m=mrp(b);
+openRc(HEAD+'<h2>Supplier Purchase Receipt</h2><div class="c">Bill #'+String(b.id).slice(-6)+' · '+fd(b.date)+' · '+b.time+'</div><div style="margin:6px 0"><b>Supplier:</b> '+esc(b.sup)+'</div><table><tr><th>Product</th><th class="n">Qty</th><th class="n">MRP</th><th class="n">Rate</th><th class="n">Amt</th></tr>'+b.items.map(i=>'<tr><td>'+esc(i.p)+'</td><td class="n">'+i.q+'</td><td class="n">'+(i.m||'-')+'</td><td class="n">'+i.r+'</td><td class="n">'+rs(i.q*i.r)+'</td></tr>').join('')+'</table><div class="tr"><span>Bill total</span><span>'+rs(t)+'</span></div><div class="tr"><span>MRP total</span><span>'+rs(m)+'</span></div><div class="tr"><span>Diye ('+esc(b.mode.slice(2))+')</span><span>'+rs(b.paid)+'</span></div><div class="tr" style="color:#c00"><span>Baaki</span><span>'+rs(t-b.paid)+'</span></div>'+(b.note?'<div class="c">'+esc(b.note)+'</div>':''),
+'*5 Brother\u2019s Fitness Club*\nSupplier: '+b.sup+'\n'+fd(b.date)+' '+b.time+'\n'+b.items.map(i=>i.p+' '+i.q+' x '+i.r+' = '+rs(i.q*i.r)+(i.m?' (MRP '+i.m+')':'')).join('\n')+'\n*Total: '+rs(t)+'*\nDiye: '+rs(b.paid)+'\nBaaki: '+rs(t-b.paid))}
+function pay(id){const b=D.find(x=>x.id===id),due=tot(b)-b.paid;const v=num(prompt('Baaki '+rs(due)+'. Ab kitna diya? (₹)',due));if(v<=0)return;const a=Math.min(v,due);b.paid+=a;b.pays.push({a:a,d:tdy()});put();draw();toast('Payment likh di ✅')}
+function del(id){if(confirm('Ye bill hatana hai?')){D=D.filter(b=>b.id!==id);put();draw()}}
+function card(b){const t=tot(b),due=t-b.paid;return '<div class="li"><div class="t"><span>'+esc(b.sup)+'</span><span class="y">'+rs(t)+'</span></div><small>'+b.items.map(i=>esc(i.p)+' ×'+i.q).join(', ')+'</small><small>'+fd(b.date)+' '+b.time+' · Diye '+rs(b.paid)+(due>0?' · <b class="r">Baaki '+rs(due)+'</b>':' · ✅ Clear')+'</small><button class="mini" style="background:#25e07a;color:#000" onclick="receipt('+b.id+')">🧾 Receipt</button>'+(due>0?'<button class="mini" onclick="pay('+b.id+')">💰 Paisa diya</button>':'')+'<button class="mini" style="background:#5a1515" onclick="del('+b.id+')">Hatao</button></div>'}
+function draw(){let T=0,P=0;D.forEach(b=>{T+=tot(b);P+=b.paid});$('sT').textContent=rs(T);$('sPd').textContent=rs(P);$('sB').textContent=rs(T-P);
+const S=[...D].sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
+$('p-list').innerHTML=S.map(card).join('')||'<div class="empty">Abhi koi bill nahi</div>';
+const g={};D.forEach(b=>{const o=g[b.sup]=g[b.sup]||{t:0,p:0,n:0};o.t+=tot(b);o.p+=b.paid;o.n++});
+$('p-sup').innerHTML=Object.keys(g).map(k=>'<div class="box"><h3>'+esc(k)+'</h3><div class="tot"><span>Bills</span><span>'+g[k].n+'</span></div><div class="tot"><span>Total khareed</span><span class="y">'+rs(g[k].t)+'</span></div><div class="tot"><span>Diye</span><span class="g">'+rs(g[k].p)+'</span></div><div class="tot"><span>Baaki</span><span class="r">'+rs(g[k].t-g[k].p)+'</span></div></div>').join('')||'<div class="empty">Supplier nahi mila</div>';
+const mo={};D.forEach(b=>{const k=b.date.slice(0,7),o=mo[k]=mo[k]||{t:0,m:0,p:0};o.t+=tot(b);o.m+=mrp(b);o.p+=b.paid});
+$('p-rep').innerHTML=Object.keys(mo).sort().reverse().map(k=>'<div class="box"><h3>'+k.split('-').reverse().join('/')+'</h3><div class="tot"><span>Khareed (rate)</span><span class="y">'+rs(mo[k].t)+'</span></div><div class="tot"><span>MRP value</span><span>'+rs(mo[k].m)+'</span></div><div class="tot"><span>Bachat</span><span class="g">'+rs(mo[k].m-mo[k].t)+'</span></div><div class="tot"><span>Baaki</span><span class="r">'+rs(mo[k].t-mo[k].p)+'</span></div></div>').join('')||'<div class="empty">Report ke liye bill add karo</div>';
+$('pl').innerHTML=[...new Set(PR.concat(D.flatMap(b=>b.items.map(i=>i.p))))].map(p=>'<option value="'+esc(p)+'">').join('')}
+draw();reset();
+</script></body></html>

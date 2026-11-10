@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Daily Kharcha – 5 Brother’s</title><style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#0b0904;color:#fff;font-family:system-ui,-apple-system,sans-serif;padding:12px 12px 40px}
+.app{border:3px solid #ffcc00;border-radius:26px;padding:16px;background:#100d03;max-width:520px;margin:auto}
+h1{text-align:center;color:#ffcc00;font-size:25px}
+.tag{display:table;margin:8px auto 14px;background:#2a2200;color:#ffcc00;padding:5px 16px;border-radius:20px;font-weight:700;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.st{background:#161616;border:2px solid #333;border-radius:16px;padding:12px 4px;text-align:center}
+.st b{display:block;font-size:19px}.st span{font-size:12px;color:#aaa}
+.g{color:#2dff8f}.r{color:#ff6b6b}.y{color:#ffcc00}
+.bigs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.big{border:0;border-radius:18px;padding:22px 8px;color:#fff;font-size:18px;font-weight:800}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs button{flex:1;padding:13px 2px;border-radius:14px;border:2px solid #444;background:#161616;color:#fff;font-weight:800;font-size:14px}
+.tabs .on{background:#ffcc00;color:#000;border-color:#ffcc00}
+.box{border:2px solid #333;border-radius:20px;padding:14px;background:#141414;margin-bottom:12px}
+.box h3{color:#ffcc00;border-left:4px solid #ffcc00;padding-left:10px;margin-bottom:10px;font-size:17px}
+label{display:block;font-weight:700;margin:10px 0 6px;font-size:14px}
+input,select,textarea{width:100%;background:#0e0e0e;color:#fff;border:2px solid #444;border-radius:14px;padding:13px;font-size:16px}
+input:focus,select:focus,textarea:focus{border-color:#ffcc00;outline:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{padding:9px 14px;border-radius:20px;border:2px solid #444;background:#181818;color:#ffcc00;font-weight:700;font-size:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.it{display:grid;grid-template-columns:1fr 78px 40px;gap:6px;margin-bottom:6px}
+.it.s{grid-template-columns:1fr 54px 76px 76px 36px}
+.it input{padding:11px 8px;font-size:15px}
+.x{background:#ff4747;border:0;border-radius:12px;color:#fff;font-weight:900}
+.b{border:0;border-radius:16px;padding:16px;font-size:17px;font-weight:800;width:100%;margin-top:10px}
+.save{background:#333;color:#fff}.rec{background:#25e07a;color:#000}.clr{background:#2b2b2b;color:#fff}.add{background:#2b2b2b;color:#fff;width:auto;padding:11px 16px;font-size:14px}
+.li{background:#181818;border:1px solid #333;border-radius:14px;padding:12px;margin-bottom:8px}
+.li .t{display:flex;justify-content:space-between;gap:8px;font-weight:800}
+.li small{color:#999;display:block;margin-top:3px}
+.mini{border:0;border-radius:10px;padding:8px 12px;font-weight:800;font-size:13px;margin:8px 6px 0 0;background:#333;color:#fff}
+.tot{display:flex;justify-content:space-between;padding:6px 0;font-weight:800}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:20;display:none;overflow:auto;padding:14px}.ov.on{display:block}
+.paper{background:#fff;color:#000;max-width:420px;margin:0 auto 10px;padding:16px;border-radius:8px;font-size:14px}
+.paper h2{text-align:center;font-size:17px}.paper .c{text-align:center;font-size:12px;color:#444}
+.paper table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}.paper td,.paper th{border-bottom:1px dashed #999;padding:4px 2px;text-align:left}
+.paper .n{text-align:right}.paper .tr{display:flex;justify-content:space-between;font-weight:800;padding:2px 0}
+.ra{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:420px;margin:auto}.ra button{padding:14px 4px;border:0;border-radius:12px;font-weight:800}
+.hide{display:none!important}.empty{text-align:center;color:#777;padding:24px}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#ffcc00;color:#000;padding:10px 18px;border-radius:30px;font-weight:800;z-index:50;display:none}
+@media print{body *{visibility:hidden}.paper,.paper *{visibility:visible}.paper{position:absolute;left:0;top:0;width:100%;max-width:none}}
+</style></head><body>
+<div id="toast"></div>
+<div class="ov" id="ov"><div class="paper" id="paper"></div>
+<div class="ra"><button style="background:#ffcc00" onclick="window.print()">🖨️ Print / PDF</button><button style="background:#25e07a" onclick="shareRc()">WhatsApp</button><button style="background:#444;color:#fff" onclick="$('ov').classList.remove('on')">Band</button></div></div>
+<div class="app">
+<h1>💰 Daily Kharcha</h1><div class="tag">Pocket · Family · Ghar · Personal Expense</div>
+<div class="stats"><div class="st" onclick="setPocket()"><b class="y" id="sP">₹0</b><span>💵 Pocket Cash<br>(tap set)</span></div><div class="st"><b class="g" id="sM">₹0</b><span>Aaj mila</span></div><div class="st"><b class="r" id="sD">₹0</b><span>Aaj diya</span></div></div>
+<div class="stats" style="grid-template-columns:1fr 1fr"><div class="st" style="border-color:#2dff8f"><b class="g" id="sL">₹0</b><span>Udhar Lena (pending)</span></div><div class="st" style="border-color:#ff6b6b"><b class="r" id="sN">₹0</b><span>Udhar Dena (pending)</span></div></div>
+<div class="bigs"><button class="big" style="background:#0a8f3c" onclick="openF('mila')">➕ Paise Mile</button><button class="big" style="background:#a33300" onclick="openF('diya')">➖ Paise Diye / Kharcha</button><button class="big" style="background:#065c4b" onclick="openF('lena')">📥 Udhar Lena hai</button><button class="big" style="background:#6b3300" onclick="openF('dena')">📤 Udhar Dena hai</button></div>
+<div class="tabs"><button id="tb-add" class="on" onclick="tab('add')">➕ Add</button><button id="tb-udhar" onclick="tab('udhar')">💳 Udhar</button><button id="tb-list" onclick="tab('list')">📒 List</button><button id="tb-rep" onclick="tab('rep')">📊 Report</button></div>
+<div id="p-add" class="box"><h3 id="fT">Kharcha / Paise Diye</h3>
+<label>Category *</label><select id="cat"></select>
+<label>Cash / Online *</label><select id="mode"><option>💵 Cash</option><option>📱 Online</option></select>
+<label>Common Reason (optional)</label><input id="reason" placeholder="jaise: ration, school, petrol...">
+<div class="chips" id="rch"></div>
+<div class="two"><div><label>Date</label><input type="date" id="date"></div><div><label>Time</label><input type="time" id="time"></div></div>
+<div class="box" style="margin-top:12px"><h3>👥 Naam + Amount (ek se zyada)</h3><div id="rows"></div><button class="b add" onclick="addRow()">➕ Aur naam add</button><div class="chips" id="nch"></div></div>
+<label>Note (optional)</label><textarea id="note" rows="2" placeholder="Extra detail..."></textarea>
+<div class="two"><button class="b save" onclick="save(0)">💾 Only Save</button><button class="b rec" onclick="save(1)">✅ Save + Receipt</button></div>
+<button class="b clr" onclick="openF(T)">Clear</button></div>
+<div id="p-udhar" class="hide"></div><div id="p-list" class="hide"></div><div id="p-rep" class="hide"></div>
+</div><script>
+const $=id=>document.getElementById(id);
+const rs=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=v=>parseFloat(v)||0;
+let D=[];try{D=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+const put=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const tdy=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const tm=()=>{const d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())};
+const fd=s=>s.split('-').reverse().join('/');
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>t.style.display='none',1800)}
+function tab(n){TABS.forEach(t=>{$('p-'+t).classList.toggle('hide',t!==n);$('tb-'+t).classList.toggle('on',t===n)});if(n!=='add')draw()}
+function chipsFill(id,arr,fn){const c=$(id);c.innerHTML='';arr.forEach(t=>{const s=document.createElement('span');s.className='chip';s.textContent=t;s.onclick=()=>fn(t);c.appendChild(s)})}
+function openRc(html,text){$('paper').innerHTML=html;$('ov').dataset.t=text;$('ov').classList.add('on')}
+function shareRc(){window.open('https://wa.me/?text='+encodeURIComponent($('ov').dataset.t),'_blank')}
+const HEAD='<h2>5 BROTHER\u2019S FITNESS CLUB</h2><div class="c">उमराव खेड़ा, अकरमपुर, उन्नाव · 9990954574</div><hr style="margin:8px 0">';
+
+const KEY='kharcha_5bro_v1',TABS=['add','udhar','list','rep'];
+const CATS={mila:['Member Fee','Supplement Sale','Ghar se mile','Other'],diya:['Family Member','Ration','Petrol','School','Medicine','Electricity','Milk','Vegetables','Other'],lena:['Udhar Diya'],dena:['Udhar Liya']};
+const TT={mila:'➕ Paise Mile',diya:'➖ Kharcha / Paise Diye',lena:'📥 Udhar Lena hai (maine diya)',dena:'📤 Udhar Dena hai (maine liya)'};
+const RS={mila:['Fees','Supplement'],diya:['Ration','Petrol','School','Medicine','Electricity','Milk','Vegetables','Festival'],lena:[],dena:[]};
+const DN=['Self','Satyam','Munna','Shivam gautam','Suraj','Aman','Vikash loder'];
+let T='diya',open=+(localStorage.getItem(KEY+'o')||0);
+function flow(e){const c=e.mode.indexOf('Cash')>-1;if(!c)return 0;if(e.type==='mila'||(e.type==='lena'&&e.done))return e.amt;if(e.type==='diya'||(e.type==='dena'&&e.done))return -e.amt;return 0}
+function setPocket(){const v=prompt('Abhi pocket mein kitna cash hai? (₹)',open);if(v===null)return;open=num(v)-D.reduce((s,e)=>s+flow(e),0);localStorage.setItem(KEY+'o',open);draw()}
+function openF(t){T=t;tab('add');$('fT').textContent=TT[t];$('cat').innerHTML=CATS[t].map(c=>'<option>'+c+'</option>').join('');$('reason').value='';$('note').value='';$('date').value=tdy();$('time').value=tm();$('rows').innerHTML='';addRow();addRow();
+chipsFill('rch',RS[t],v=>$('reason').value=v);
+const nm=[...new Set(D.map(e=>e.who).concat(DN))];chipsFill('nch',nm,v=>{const r=[...document.querySelectorAll('.nm')];(r.find(i=>!i.value)||r[r.length-1]).value=v})}
+function addRow(){const d=document.createElement('div');d.className='it';d.innerHTML='<input class="nm" placeholder="Naam"><input class="am" type="number" inputmode="decimal" placeholder="₹"><button class="x" onclick="this.parentNode.remove()">✖</button>';$('rows').appendChild(d)}
+function save(rc){const rows=[...document.querySelectorAll('#rows .it')].map(r=>({who:r.children[0].value.trim()||'Self',amt:num(r.children[1].value)})).filter(r=>r.amt>0);
+if(!rows.length){toast('Amount daalo');return}
+const base={type:T,cat:$('cat').value,mode:$('mode').value,reason:$('reason').value.trim(),date:$('date').value||tdy(),time:$('time').value||tm(),note:$('note').value.trim(),done:false};
+rows.forEach((r,i)=>D.push(Object.assign({id:Date.now()+i},base,r)));put();draw();toast('Save ho gaya ✅');
+if(rc){const tot=rows.reduce((s,r)=>s+r.amt,0);
+openRc(HEAD+'<h2>'+TT[T]+' Receipt</h2><div class="c">'+fd(base.date)+' · '+base.time+' · '+esc(base.mode)+'</div><table><tr><th>Naam</th><th class="n">Amount</th></tr>'+rows.map(r=>'<tr><td>'+esc(r.who)+'</td><td class="n">'+rs(r.amt)+'</td></tr>').join('')+'</table><div class="tr"><span>Total</span><span>'+rs(tot)+'</span></div><div class="c">'+esc(base.cat)+(base.reason?' · '+esc(base.reason):'')+(base.note?'<br>'+esc(base.note):'')+'</div>',
+'*5 Brother\u2019s Fitness Club*\n'+TT[T]+'\n'+fd(base.date)+' '+base.time+'\n'+rows.map(r=>r.who+': '+rs(r.amt)).join('\n')+'\n*Total: '+rs(tot)+'*'+(base.reason?'\n'+base.reason:''))}
+openF(T)}
+function item(e,u){return '<div class="li"><div class="t"><span>'+esc(e.who)+'</span><span class="'+(e.type==='mila'||e.type==='lena'?'g':'r')+'">'+rs(e.amt)+'</span></div><small>'+TT[e.type].slice(0,2)+' '+esc(e.cat)+(e.reason?' · '+esc(e.reason):'')+'</small><small>'+fd(e.date)+' '+e.time+' · '+esc(e.mode)+(e.done?' · ✅ chukta':'')+'</small>'+(u?'<button class="mini" onclick="settle('+e.id+')">'+(e.done?'Dobara kholo':'✅ Chukta')+'</button>':'')+'<button class="mini" style="background:#5a1515" onclick="del('+e.id+')">Hatao</button></div>'}
+function settle(id){D.forEach(e=>{if(e.id===id)e.done=!e.done});put();draw()}
+function del(id){if(confirm('Ye entry hatani hai?')){D=D.filter(e=>e.id!==id);put();draw()}}
+function draw(){const t=tdy();let m=0,d=0,l=0,n=0;D.forEach(e=>{if(e.date===t){if(e.type==='mila')m+=e.amt;if(e.type==='diya')d+=e.amt}if(!e.done){if(e.type==='lena')l+=e.amt;if(e.type==='dena')n+=e.amt}});
+$('sP').textContent=rs(open+D.reduce((s,e)=>s+flow(e),0));$('sM').textContent=rs(m);$('sD').textContent=rs(d);$('sL').textContent=rs(l);$('sN').textContent=rs(n);
+const S=[...D].sort((a,b)=>(b.date+b.time).localeCompare(a.date+a.time));
+const ul=S.filter(e=>e.type==='lena'||e.type==='dena').sort((a,b)=>a.done-b.done);
+$('p-udhar').innerHTML=ul.map(e=>item(e,1)).join('')||'<div class="empty">Koi udhar nahi</div>';
+$('p-list').innerHTML=S.map(e=>item(e,0)).join('')||'<div class="empty">Abhi koi entry nahi</div>';
+const g={};D.filter(e=>e.type==='diya').forEach(e=>{const k=e.date.slice(0,7);g[k]=g[k]||{};g[k][e.cat]=(g[k][e.cat]||0)+e.amt});
+$('p-rep').innerHTML=Object.keys(g).sort().reverse().map(k=>{const tt=Object.values(g[k]).reduce((a,b)=>a+b,0);return '<div class="box"><h3>'+k.split('-').reverse().join('/')+' · Kharcha '+rs(tt)+'</h3>'+Object.keys(g[k]).map(c=>'<div class="tot"><span>'+esc(c)+'</span><span class="r">'+rs(g[k][c])+'</span></div>').join('')+'</div>'}).join('')||'<div class="empty">Report ke liye kharcha add karo</div>'}
+openF('diya');draw();
+</script></body></html>
