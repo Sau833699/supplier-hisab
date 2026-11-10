@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Supplier Hisab – 5 Brother’s</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#050505;color:#fff;font-family:system-ui,-apple-system,sans-serif}
+body{padding:14px 14px 40px}
+header{text-align:center;margin-bottom:14px;padding:16px 12px;border:2px solid #ffcc00;border-radius:16px;background:linear-gradient(145deg,#2a2200,#0d0d0d)}
+header h1{color:#ffcc00;font-size:20px;font-weight:900}
+header .a{color:#aaa;font-size:12px;margin-top:4px}
+#clk{color:#ffcc00;margin-top:8px;font-size:13px;font-weight:700;line-height:1.5}
+#clk b{font-size:17px;color:#fff}
+.v{display:none}.v.on{display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:110px;padding:14px 8px;background:#111;border:2px solid #333;border-radius:16px;font-weight:800;font-size:15px;text-align:center;line-height:1.25;cursor:pointer}
+.tile:active{transform:scale(.97)}.tile .ico{font-size:30px}.tile small{font-size:11px;color:#999;font-weight:500}
+.gold{border-color:#ffcc00;background:#1a1600;color:#ffcc00}.orange{border-color:#ff9900;background:#1a1000;color:#ff9900}
+.purple{border-color:#c084fc;background:#150a20;color:#c084fc}.cyan{border-color:#22d3ee;background:#061a1f;color:#22d3ee}
+.green{border-color:#00ff66;background:#0a1a10;color:#00ff66}.red{border-color:#ff5555;background:#1a0808;color:#ff6666}
+.box{border:2px solid #333;border-radius:16px;padding:14px;background:#111;margin-bottom:14px}
+.box h3{color:#ffcc00;font-size:15px;margin-bottom:8px;border-left:4px solid #ffcc00;padding-left:8px}
+label{display:block;font-size:13px;font-weight:700;margin:10px 0 5px}
+input{width:100%;background:#0b0b0b;color:#fff;border:2px solid #444;border-radius:12px;padding:13px;font-size:16px}
+input:focus{border-color:#ffcc00;outline:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.chip{padding:9px 14px;border-radius:20px;border:2px solid #444;background:#181818;color:#ffcc00;font-weight:700;font-size:14px;cursor:pointer}
+.b{border:0;border-radius:14px;padding:15px;font-size:16px;font-weight:800;width:100%;margin-top:10px;cursor:pointer}
+.bg{background:#ffcc00;color:#000}.bn{background:#25e07a;color:#000}.bd{background:#2b2b2b;color:#fff}
+.ln{background:#181818;border:1px solid #333;border-radius:12px;padding:10px;margin-bottom:8px}
+.ln .lt{display:flex;justify-content:space-between;font-weight:800;margin-bottom:8px}
+.ln .lt button{background:#ff4747;border:0;border-radius:8px;color:#fff;padding:4px 10px;font-weight:900}
+.ln .lr{display:grid;grid-template-columns:80px 1fr 1fr;gap:8px;align-items:center}
+.ln input{padding:10px;font-size:15px}.ln b{text-align:right;color:#00ff99;font-size:15px}
+.t{display:flex;justify-content:space-between;padding:5px 0;font-weight:700;gap:8px}
+.big{font-size:24px;font-weight:900}.y{color:#ffcc00}.gr{color:#2dff8f}.rd{color:#ff6b6b}
+.pm{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pm div{padding:13px 4px;border:2px solid #444;border-radius:12px;text-align:center;font-weight:800;font-size:14px;background:#181818;cursor:pointer}
+.pm .on{background:#ffcc00;color:#000;border-color:#ffcc00}
+.li{background:#181818;border:1px solid #333;border-radius:12px;padding:10px;margin-bottom:8px}
+.li small{display:block;color:#999;margin-top:3px;font-size:12px}
+.mini{border:0;border-radius:10px;padding:8px 12px;font-weight:800;font-size:13px;margin:8px 6px 0 0;background:#333;color:#fff}
+.back{background:none;border:0;color:#ffcc00;font-weight:800;font-size:15px;margin-bottom:10px}
+.empty{text-align:center;color:#777;padding:18px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:20;display:none;overflow:auto;padding:14px}.ov.on{display:block}
+.paper{background:#fff;color:#000;max-width:420px;margin:0 auto 10px;padding:16px;border-radius:8px;font-size:14px}
+.paper h2{text-align:center;font-size:17px}.paper .c{text-align:center;font-size:12px;color:#444}
+.paper table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13px}.paper td,.paper th{border-bottom:1px dashed #999;padding:4px 2px;text-align:left}
+.paper .n{text-align:right}.paper .tr{display:flex;justify-content:space-between;font-weight:800;padding:3px 0}
+.ra{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;max-width:420px;margin:auto}.ra button{padding:14px 4px;border:0;border-radius:12px;font-weight:800}
+#toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:#ffcc00;color:#000;padding:10px 18px;border-radius:30px;font-weight:800;z-index:50;display:none}
+@media print{body *{visibility:hidden}.paper,.paper *{visibility:visible}.paper{position:absolute;left:0;top:0;width:100%;max-width:none}}
+</style></head><body>
+<div id="toast"></div>
+<div class="ov" id="ov"><div class="paper" id="paper"></div><div class="ra"><button style="background:#ffcc00" onclick="window.print()">🖨️ Print / PDF</button><button style="background:#25e07a" onclick="wa()">WhatsApp</button><button style="background:#444;color:#fff" onclick="$('ov').classList.remove('on')">Band</button></div></div>
+
+<header><h1>🏭 SUPPLIER HISAB</h1><div class="a">5 BROTHER’S FITNESS CLUB</div><div id="clk"></div></header>
+
+<div id="v-home" class="v on">
+ <div class="box"><h3>Supplier ki detail</h3>
+  <label>Supplier ka naam *</label><input id="sn" placeholder="Naam">
+  <label>Mobile no. *</label><input id="sp" type="tel" inputmode="numeric" maxlength="10" placeholder="10 digit number">
+  <div class="chips" id="sch"></div></div>
+ <div class="grid">
+  <div class="tile gold" onclick="enter('bill')"><span class="ico">🧾</span>Naya Bill<small>Product · Price · Udhar / Payment</small></div>
+  <div class="tile orange" onclick="enter('old')"><span class="ico">📒</span>Purana Bakaya<small>Baaki · Payment · Receipt</small></div></div>
+ <div class="box"><h3>Sabhi supplier ka bakaya</h3><div id="all"></div></div>
+</div>
+
+<div id="v-bill" class="v">
+ <button class="back" onclick="go('home')">← Wapas</button>
+ <div class="box" id="bb"></div>
+ <div class="box"><h3>Product chuno</h3><div class="grid" id="pt" style="margin-bottom:0"></div><div class="chips" id="sz"></div></div>
+ <div class="box"><h3>Bill ke product</h3><div id="lines"></div>
+  <div class="t" style="border-top:2px dashed #ffcc00;margin-top:8px;padding-top:10px"><span>Aaj ka total</span><span class="big y" id="tot">₹0</span></div></div>
+ <div class="box"><h3>Payment / Udhar</h3>
+  <div class="pm"><div id="pm-udhar" onclick="setPm('udhar')">📝 Udhar</div><div id="pm-cash" onclick="setPm('cash')">💵 Cash</div><div id="pm-online" onclick="setPm('online')">📱 Online</div></div>
+  <label>Abhi kitna diya (₹)</label><input id="paid" type="number" inputmode="decimal" oninput="paidT=1;calc()">
+  <div style="margin-top:10px"><div class="t"><span>Purana bakaya</span><span id="s-old">₹0</span></div><div class="t"><span>Aaj ka bill</span><span id="s-bill">₹0</span></div><div class="t"><span>Aaj diya</span><span class="gr" id="s-paid">₹0</span></div><div class="t" style="border-top:1px solid #444"><span>Kul baaki</span><span class="rd" id="s-due">₹0</span></div></div>
+  <button class="b bn" onclick="saveBill()">✅ Bill Save karo</button></div>
+</div>
+
+<div id="v-done" class="v"><div class="box" id="dn"></div>
+ <button class="b bg" onclick="rcT(lastB)">🧾 Aaj ke udhar ki receipt</button>
+ <button class="b bn" onclick="rcTot(cur.id,lastB)">📜 Total udhar ki receipt</button>
+ <button class="b bd" onclick="go('home')">🏠 Home</button></div>
+
+<div id="v-old" class="v">
+ <button class="back" onclick="go('home')">← Wapas</button>
+ <div class="box" id="ob"></div>
+ <div class="box"><h3>Payment diya (baaki chukao)</h3>
+  <div class="pm" style="grid-template-columns:1fr 1fr"><div id="op-cash" class="on" onclick="opm('cash')">💵 Cash</div><div id="op-online" onclick="opm('online')">📱 Online</div></div>
+  <label>Kitna diya (₹)</label><input id="pamt" type="number" inputmode="decimal">
+  <button class="b bn" onclick="payNow()">💰 Payment Save karo</button></div>
+ <button class="b bn" style="margin:0 0 14px" onclick="rcTot(cur.id,null)">📜 Total udhar ki receipt</button>
+ <div class="box"><h3>Purane bill</h3><div id="ol"></div></div>
+ <div class="box"><h3>Payment history</h3><div id="op"></div></div>
+</div>
+
+<script>
+const KEY='supplier_5bro_v2';
+const $=id=>document.getElementById(id);
+const rs=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=v=>parseFloat(v)||0;
+const CAT0={'Mass Gainer':['1 kg','3 kg','5 kg'],'Whey Protein':['1 kg','1.81 kg','2 kg','3 kg'],'Pre Workout':['60 Serving'],'Creatine':['100 Gram','320 Gram']};
+const COL={'Mass Gainer':'orange','Whey Protein':'gold','Pre Workout':'purple','Creatine':'cyan'};
+const ICO={'Mass Gainer':'💪','Whey Protein':'🥛','Pre Workout':'⚡','Creatine':'🔥'};
+let S={sup:[],bills:[],pays:[],cat:CAT0,rates:{}};
+try{const x=JSON.parse(localStorage.getItem(KEY));if(x)S=Object.assign(S,x)}catch(e){}
+const put=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const DAY=['Ravivaar','Somvaar','Mangalvaar','Budhvaar','Guruvaar','Shukravaar','Shanivaar'];
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const dstr=d=>DAY[d.getDay()]+', '+d.getDate()+' '+MON[d.getMonth()]+' '+d.getFullYear();
+const tstr=d=>d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
+const full=ts=>{const d=new Date(ts);return dstr(d)+' · '+tstr(d)};
+function tick(){const d=new Date();$('clk').innerHTML='📅 '+dstr(d)+'<br>🕒 <b>'+tstr(d)+'</b>'}
+setInterval(tick,1000);tick();
+function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';clearTimeout(t.h);t.h=setTimeout(()=>t.style.display='none',2000)}
+let cur=null,L=[],pm='udhar',paidT=0,lastB=0,opMode='cash',PK=[];
+const bal=id=>S.bills.filter(b=>b.sid===id).reduce((s,b)=>s+b.total-b.paid,0)-S.pays.filter(p=>p.sid===id).reduce((s,p)=>s+p.amt,0);
+function lastPay(id,before){const a=[];S.bills.forEach(b=>{if(b.sid===id&&b.paid>0&&b.ts<(before||1e15))a.push({ts:b.ts,amt:b.paid,mode:b.mode})});S.pays.forEach(p=>{if(p.sid===id&&p.ts<(before||1e15))a.push(p)});a.sort((x,y)=>y.ts-x.ts);return a[0]}
+function who(){const n=$('sn').value.trim(),p=$('sp').value.replace(/\D/g,'');if(!n||p.length<10){toast('Naam aur 10 digit mobile daalo');return null}
+let s=S.sup.find(x=>x.phone===p)||S.sup.find(x=>x.name.toLowerCase()===n.toLowerCase());
+if(!s){s={id:Date.now(),name:n,phone:p};S.sup.push(s)}else{s.name=n;s.phone=p}put();return s}
+function enter(v){const s=who();if(!s)return;cur=s;go(v)}
+function go(v){document.querySelectorAll('.v').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));scrollTo(0,0);if(v==='home')drawHome();if(v==='bill')startBill();if(v==='old')drawOld()}
+function pick(s){$('sn').value=s.name;$('sp').value=s.phone}
+function drawHome(){const c=$('sch');c.innerHTML='';S.sup.forEach(s=>{const e=document.createElement('span');e.className='chip';e.textContent=s.name;e.onclick=()=>pick(s);c.appendChild(e)});
+const a=$('all');a.innerHTML='';S.sup.forEach(s=>{const d=document.createElement('div');d.className='li';const b=bal(s.id);d.innerHTML='<div class="t"><span>'+esc(s.name)+'</span><span class="'+(b>0?'rd':'gr')+'">'+rs(b)+'</span></div><small>📞 '+esc(s.phone)+'</small>';d.onclick=()=>{pick(s);scrollTo(0,0)};a.appendChild(d)});if(!S.sup.length)a.innerHTML='<div class="empty">Abhi koi supplier nahi</div>'}
+const banner=s=>'<div class="t"><span class="y">🏭 '+esc(s.name)+'</span><span>📞 '+esc(s.phone)+'</span></div><div class="t"><span>Purana bakaya</span><span class="rd">'+rs(bal(s.id))+'</span></div>';
+function startBill(){L=[];pm='udhar';paidT=0;$('bb').innerHTML=banner(cur);PK=Object.keys(S.cat);$('sz').innerHTML='';
+$('pt').innerHTML=PK.map((p,i)=>'<div class="tile '+(COL[p]||'green')+'" onclick="pickP('+i+')"><span class="ico">'+(ICO[p]||'📦')+'</span>'+esc(p)+'</div>').join('');drawLines()}
+function pickP(i){const p=PK[i],c=$('sz');c.innerHTML='<div style="width:100%;color:#ffcc00;font-weight:800">'+esc(p)+' — size chuno:</div>';
+S.cat[p].forEach(v=>{const e=document.createElement('span');e.className='chip';e.textContent=v;e.onclick=()=>addLine(p,v);c.appendChild(e)});
+const n=document.createElement('span');n.className='chip';n.textContent='➕ Naya size';n.onclick=()=>{const v=(prompt('Naya size likho (jaise 5 kg)')||'').trim();if(v&&S.cat[p].indexOf(v)<0){S.cat[p].push(v);put();pickP(i)}};c.appendChild(n)}
+function addLine(p,v){const x=L.find(l=>l.p===p&&l.v===v);if(x)x.q=num(x.q)+1;else L.push({p:p,v:v,q:1,r:S.rates[p+'|'+v]||''});drawLines();toast(p+' '+v+' add')}
+function drawLines(){const d=$('lines');d.innerHTML='';L.forEach((l,i)=>{const e=document.createElement('div');e.className='ln';e.innerHTML='<div class="lt"><span>'+esc(l.p)+' '+esc(l.v)+'</span><button onclick="L.splice('+i+',1);drawLines()">✖</button></div><div class="lr"><input type="number" inputmode="decimal" placeholder="Qty" value="'+l.q+'" oninput="L['+i+'].q=num(this.value);calc()"><input type="number" inputmode="decimal" placeholder="Retail price ₹" value="'+l.r+'" oninput="L['+i+'].r=num(this.value);calc()"><b id="la'+i+'"></b></div>';d.appendChild(e)});
+if(!L.length)d.innerHTML='<div class="empty">Upar se product aur size chuno</div>';calc()}
+const tot=()=>L.reduce((s,l)=>s+num(l.q)*num(l.r),0);
+function setPm(m){pm=m;paidT=0;calc()}
+function calc(){const t=tot();L.forEach((l,i)=>{const e=$('la'+i);if(e)e.textContent=rs(num(l.q)*num(l.r))});$('tot').textContent=rs(t);
+['udhar','cash','online'].forEach(k=>$('pm-'+k).classList.toggle('on',k===pm));
+if(!paidT)$('paid').value=pm==='udhar'?0:t;let p=Math.min(num($('paid').value),t);const o=bal(cur.id);
+$('s-old').textContent=rs(o);$('s-bill').textContent=rs(t);$('s-paid').textContent=rs(p);$('s-due').textContent=rs(o+t-p)}
+function saveBill(){if(!L.length||L.some(l=>!(num(l.q)>0)||!(num(l.r)>0))){toast('Har product ki qty aur price daalo');return}
+const t=tot(),p=Math.min(num($('paid').value),t),o=bal(cur.id);
+const b={id:Date.now(),sid:cur.id,ts:Date.now(),items:L.map(l=>({p:l.p,v:l.v,q:num(l.q),r:num(l.r)})),total:t,paid:p,mode:p>0?(pm==='online'?'Online':'Cash'):'Udhar',old:o};
+b.items.forEach(i=>S.rates[i.p+'|'+i.v]=i.r);S.bills.push(b);put();lastB=b.id;L=[];done(b)}
+const lines=b=>b.items.map(i=>'<div class="t"><span>'+esc(i.p)+' '+esc(i.v)+'<br><small style="color:#999">'+i.q+' × '+rs(i.r)+'</small></span><span>'+rs(i.q*i.r)+'</span></div>').join('');
+function done(b){const due=b.total-b.paid;$('dn').innerHTML='<h3>✅ Bill Save ho gaya</h3><div class="t"><span class="y">'+esc(cur.name)+'</span><span>'+esc(cur.phone)+'</span></div><small style="color:#999">'+full(b.ts)+'</small><div style="margin:10px 0">'+lines(b)+'</div><div class="t"><span>Aaj ka total</span><span class="y">'+rs(b.total)+'</span></div>'
++(b.paid>0?'<div class="t"><span>Diya ('+b.mode+')</span><span class="gr">'+rs(b.paid)+'</span></div>':'<div class="t rd" style="display:block">📝 Ye sab UDHAR liya gaya — koi nagad ya online payment nahi kiya.</div>')
++'<div class="t"><span>Aaj ka udhar</span><span class="rd">'+rs(due)+'</span></div><div class="t"><span>Purana bakaya</span><span>'+rs(b.old)+'</span></div><div class="t" style="border-top:1px solid #444"><span>Kul baaki</span><span class="rd big">'+rs(b.old+due)+'</span></div>';go('done')}
+function head(){return '<h2>5 BROTHER’S FITNESS CLUB</h2><div class="c">उमराव खेड़ा, अकरमपुर, उन्नाव · 9990954574</div><hr style="margin:8px 0">'}
+function tbl(b){return '<table><tr><th>Product</th><th class="n">Qty</th><th class="n">Price</th><th class="n">Amt</th></tr>'+b.items.map(i=>'<tr><td>'+esc(i.p)+' '+esc(i.v)+'</td><td class="n">'+i.q+'</td><td class="n">'+i.r+'</td><td class="n">'+rs(i.q*i.r)+'</td></tr>').join('')+'</table>'}
+const tl=b=>b.items.map(i=>i.p+' '+i.v+' '+i.q+' x '+i.r+' = '+rs(i.q*i.r)).join('\n');
+function show(h,t){$('paper').innerHTML=h;$('ov').dataset.t=t;$('ov').classList.add('on')}
+function wa(){window.open('https://wa.me/?text='+encodeURIComponent($('ov').dataset.t),'_blank')}
+function rcT(id){const b=S.bills.find(x=>x.id===id);if(!b)return;const s=S.sup.find(x=>x.id===b.sid),due=b.total-b.paid;
+show(head()+'<h2>Aaj ke Udhar / Bill ki Receipt</h2><div class="c">'+full(b.ts)+'</div><div style="margin:6px 0"><b>Supplier:</b> '+esc(s.name)+' · '+esc(s.phone)+'</div>'+tbl(b)+'<div class="tr"><span>Aaj ka total</span><span>'+rs(b.total)+'</span></div>'
++(b.paid>0?'<div class="tr"><span>Diya ('+b.mode+')</span><span>'+rs(b.paid)+'</span></div>':'<div class="c" style="color:#c00;margin:6px 0"><b>UDHAR — koi nagad / online payment nahi kiya gaya</b></div>')+'<div class="tr" style="color:#c00"><span>Aaj ka udhar</span><span>'+rs(due)+'</span></div>',
+'*5 Brother’s Fitness Club*\nSupplier: '+s.name+' ('+s.phone+')\n'+full(b.ts)+'\n'+tl(b)+'\n*Total: '+rs(b.total)+'*\n'+(b.paid>0?'Diya ('+b.mode+'): '+rs(b.paid):'UDHAR - koi payment nahi')+'\n*Aaj ka udhar: '+rs(due)+'*')}
+function rcTot(sid,bid){const s=S.sup.find(x=>x.id===sid),b=bid?S.bills.find(x=>x.id===bid):null,o=b?b.old:bal(sid),lp=lastPay(sid,b?b.ts:0),t=b?b.total:0,p=b?b.paid:0,k=o+t-p;
+const lps=lp?fullD(lp.ts)+' — '+rs(lp.amt)+' ('+lp.mode+')':'Abhi tak koi payment nahi';
+show(head()+'<h2>Total Udhar ki Receipt</h2><div class="c">'+full(b?b.ts:Date.now())+'</div><div style="margin:6px 0"><b>Supplier:</b> '+esc(s.name)+' · '+esc(s.phone)+'</div>'
++'<div class="tr"><span>Purana bakaya</span><span>'+rs(o)+'</span></div><div class="c" style="text-align:left;margin-bottom:6px">Last payment: '+esc(lps)+'</div>'
++(b?'<hr>'+tbl(b)+'<div class="tr"><span>Aaj ka bill</span><span>'+rs(t)+'</span></div><div class="tr"><span>Aaj diya ('+b.mode+')</span><span>'+rs(p)+'</span></div>':'')
++'<hr style="margin:6px 0"><div class="tr" style="color:#c00;font-size:17px"><span>KUL BAAKI</span><span>'+rs(k)+'</span></div>',
+'*5 Brother’s Fitness Club*\n*Total Udhar* - '+s.name+' ('+s.phone+')\n'+full(b?b.ts:Date.now())+'\nPurana bakaya: '+rs(o)+'\nLast payment: '+lps+(b?'\n\nAaj ka bill:\n'+tl(b)+'\nTotal: '+rs(t)+'\nAaj diya: '+rs(p):'')+'\n*KUL BAAKI: '+rs(k)+'*')}
+const fullD=ts=>dstr(new Date(ts));
+function opm(m){opMode=m;$('op-cash').classList.toggle('on',m==='cash');$('op-online').classList.toggle('on',m==='online')}
+function drawOld(){const o=bal(cur.id),lp=lastPay(cur.id);opm('cash');$('pamt').value='';
+$('ob').innerHTML='<div class="t"><span class="y">🏭 '+esc(cur.name)+'</span><span>📞 '+esc(cur.phone)+'</span></div><div class="t"><span>Kul baaki</span><span class="big '+(o>0?'rd':'gr')+'">'+rs(o)+'</span></div><div class="t"><span>Last payment</span><span style="text-align:right">'+(lp?rs(lp.amt)+'<br><small style="color:#999">'+full(lp.ts)+'</small>':'—')+'</span></div>';
+const B=S.bills.filter(b=>b.sid===cur.id).sort((a,b)=>b.ts-a.ts);
+$('ol').innerHTML=B.map(b=>'<div class="li"><div class="t"><span>'+fullD(b.ts)+'</span><span class="y">'+rs(b.total)+'</span></div><small>'+b.items.map(i=>esc(i.p)+' '+esc(i.v)+' ×'+i.q).join(', ')+'</small><small>Diya '+rs(b.paid)+' ('+b.mode+') · Udhar '+rs(b.total-b.paid)+'</small><button class="mini" style="background:#ffcc00;color:#000" onclick="rcT('+b.id+')">Bill receipt</button><button class="mini" onclick="rcTot(cur.id,'+b.id+')">Total receipt</button></div>').join('')||'<div class="empty">Koi bill nahi</div>';
+const P=S.pays.filter(p=>p.sid===cur.id).sort((a,b)=>b.ts-a.ts);
+$('op').innerHTML=P.map(p=>'<div class="li"><div class="t"><span>'+full(p.ts)+'</span><span class="gr">'+rs(p.amt)+'</span></div><small>'+p.mode+'</small></div>').join('')||'<div class="empty">Koi alag payment nahi</div>'}
+function payNow(){const a=num($('pamt').value);if(a<=0){toast('Amount daalo');return}S.pays.push({id:Date.now(),sid:cur.id,ts:Date.now(),amt:a,mode:opMode==='online'?'Online':'Cash'});put();toast('Payment save ✅');drawOld()}
+drawHome();
+</script></body></html>
