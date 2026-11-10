@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghar Kharch – 5 Brother’s Fitness Club</title>
+<style>
+:root{--page:#e8e6df;--paper:#fff;--ink:#111;--mute:#6b6b6b;--line:#cfcfcf;--yel:#ffcc00;--gold:#a67c00;--red:#c4161c;--redbg:#fdecec;--grn:#0c7a3a;--grnbg:#e8f6ed;--field:#f5f5f2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#0a0a0a;--paper:#171717;--ink:#f4f4f4;--mute:#9a9a9a;--line:#3a3a3a;--gold:#ffcc00;--red:#ff6b6b;--redbg:#2a1414;--grn:#4ade80;--grnbg:#10231a;--field:#232323}}
+:root[data-theme="dark"]{--page:#0a0a0a;--paper:#171717;--ink:#f4f4f4;--mute:#9a9a9a;--line:#3a3a3a;--gold:#ffcc00;--red:#ff6b6b;--redbg:#2a1414;--grn:#4ade80;--grnbg:#10231a;--field:#232323}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--page);color:var(--ink);font:16px/1.4 "Noto Sans Devanagari","Segoe UI",system-ui,Arial,sans-serif;padding-bottom:96px}
+.wrap{max-width:520px;margin:0 auto;padding:12px}
+.bar{display:flex;gap:8px;margin-bottom:10px}
+select,input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px}
+select:focus,input:focus,textarea:focus,button:focus-visible{outline:3px solid var(--yel);outline-offset:1px}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px}
+.ico{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);padding:0 14px;font-size:18px;flex:none}
+.paper{background:var(--paper);border-radius:6px;padding:20px 16px 18px;box-shadow:0 1px 0 var(--line)}
+.pill{display:block;width:max-content;max-width:100%;margin:0 auto 14px;background:var(--yel);color:#111;font-weight:800;border-radius:999px;padding:7px 20px;font-size:13px}
+h1{margin:0;text-align:center;font-size:26px;line-height:1.15;font-weight:800}
+.addr{text-align:center;color:var(--mute);font-size:13px;margin:4px 0 12px}
+.dash{border:0;border-top:3px dashed var(--ink);margin:12px 0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px dotted var(--line)}
+.row span:first-child{color:var(--mute)}.row b{text-align:right}
+.id{color:var(--gold)}
+.prev{background:var(--redbg);border:1px solid var(--red);border-radius:10px;padding:11px 12px;margin:12px 0;display:flex;justify-content:space-between;gap:10px;color:var(--red)}
+.prev small{display:block;font-weight:400;opacity:.9}
+.prev b{font-size:18px}
+.sec{font-weight:800;margin:14px 0 4px}
+.head,.it{display:grid;grid-template-columns:1fr 34px 62px 66px;gap:4px;align-items:baseline}
+.head{font-weight:800;font-size:13px;padding-bottom:6px;border-bottom:3px solid var(--ink)}
+.head span:nth-child(n+2),.it span:nth-child(n+2){text-align:right}
+.it{width:100%;text-align:left;background:none;color:inherit;padding:10px 0;border-bottom:1px dotted var(--line);border-radius:0}
+.it .d{display:block;color:var(--gold);font-weight:700;font-size:13px}
+.it .n{font-weight:700;overflow-wrap:anywhere}
+.it .t{font-weight:800}
+.pay{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;background:var(--grnbg);color:var(--grn);padding:9px 10px;margin:6px 0;border-radius:8px}
+.pay .d{display:block;font-size:13px;font-weight:700}
+.pay b{font-size:17px}
+.empty{padding:22px 4px;text-align:center;color:var(--mute)}
+.tot{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dotted var(--line)}
+.tot b{font-size:18px}
+.due{display:flex;justify-content:space-between;align-items:center;border-top:3px solid var(--ink);margin-top:10px;padding-top:12px;font-weight:800;font-size:17px}
+.due b{color:var(--red);font-size:26px}
+.due.ok b{color:var(--grn)}
+.act{display:flex;gap:8px;margin-top:12px}
+.act button{flex:1;background:var(--paper);color:var(--ink);border:1.5px solid var(--line);padding:11px 6px;font-weight:700}
+.fab{position:fixed;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--page);border-top:1px solid var(--line);z-index:5}
+.fab div{max-width:520px;margin:0 auto;display:flex;gap:10px}
+.fab button{flex:1;padding:15px 8px;font-weight:800;font-size:17px}
+.b1{background:var(--yel);color:#111}.b2{background:#0c7a3a;color:#fff}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:20;display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:var(--paper);width:100%;max-width:520px;max-height:92%;overflow:auto;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.sheet h2{margin:0 0 12px;font-size:19px}
+label{display:block;font-size:13px;color:var(--mute);margin:10px 0 4px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.live{margin:12px 0 4px;font-size:20px;font-weight:800;text-align:right}
+.sb{display:flex;gap:8px;margin-top:12px}
+.sb button{flex:1;padding:13px 6px;font-weight:800}
+.sv{background:var(--yel);color:#111}.sec2{background:var(--field);color:var(--ink);border:1.5px solid var(--line)}.del{background:var(--redbg);color:var(--red);border:1px solid var(--red)}
+.hint{font-size:13px;color:var(--mute);margin:8px 0 0}
+#toast{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:#111;color:#fff;padding:9px 16px;border-radius:999px;z-index:40;font-size:14px;display:none}
+.back{display:inline-block;margin:0 0 10px;padding:9px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700}
+.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{flex:1;padding:12px 6px;font-weight:800;background:var(--paper);color:var(--ink);border:1.5px solid var(--line)}.tabs .on{background:var(--yel);color:#111;border-color:var(--yel)}
+.ge{display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%;text-align:left;background:none;color:inherit;padding:10px 0;border-bottom:1px dotted var(--line);border-radius:0}.ge small{display:block;color:var(--mute);font-size:12px}
+.gi{color:var(--grn)}.go{color:var(--red)}
+.pk{width:100%;text-align:center;background:var(--yel);color:#111;padding:12px;margin:10px 0}.pk small{display:block;font-weight:600}.pk b{font-size:28px}
+.st{margin-bottom:10px}.st>div{background:var(--field);border-radius:10px;padding:9px 10px}.st small{display:block;color:var(--mute);font-size:12px}.st b{font-size:18px}
+.stab{display:flex;gap:6px;margin:12px 0}.stab button{flex:1;padding:10px 4px;font-weight:700;background:var(--field);color:var(--ink);border:1.5px solid var(--line)}.stab .on{background:var(--ink);color:var(--paper)}
+.ud{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}.ud.late{border-color:var(--red)}.ud .r{display:flex;justify-content:space-between;gap:8px}.ud small{color:var(--mute)}.ud .bt{display:flex;gap:8px;margin-top:8px}.ud .bt button{flex:1;padding:9px;font-weight:700;background:var(--field);color:var(--ink);border:1.5px solid var(--line)}
+.rw{display:grid;grid-template-columns:1fr 110px;gap:8px;margin-bottom:6px}
+@media print{.bar,.fab,.act,.tabs,.stab{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← मुख्य मेन्यू</a><div class="tabs" style="display:none"><button id="tS" class="on">📦 सप्लायर हिसाब</button><button id="tH">🏠 घर खर्च</button></div>
+  <div id="vS">
+  <div class="bar">
+    <select id="sup" aria-label="सप्लायर चुनें"></select>
+    <button class="ico" id="addSup" aria-label="नया सप्लायर">＋</button>
+    <button class="ico" id="menu" aria-label="बैकअप">⋮</button>
+  </div>
+  <div class="bar"><select id="per" aria-label="महीना चुनें"></select></div>
+  <div class="paper" id="stmt"></div></div><div id="vH" style="display:none"></div>
+</div>
+
+<div class="fab" id="fabS"><div>
+  <button class="b1" id="bBuy">＋ माल लिया</button>
+  <button class="b2" id="bPay">＋ भुगतान दिया</button>
+</div></div>
+
+<div class="fab" id="fabH" style="display:none"><div>
+  <button class="b2" id="hIn">➕ पैसे मिले</button>
+  <button class="b1" id="hOut">➖ खर्च / दिए</button>
+</div></div>
+
+<div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
+<div id="toast"></div>
+
+<script>
+var KEY="sup_hisab_v1";
+var S={sups:[],ents:[],cur:null};
+function load(){try{var r=localStorage.getItem(KEY);if(r)S=JSON.parse(r)}catch(e){}
+ if(!S.sups||!S.sups.length){S={sups:[{id:"s1",name:"Mohit Thakur",mobile:"",open:0}],ents:[],cur:"s1"}}
+ if(!S.cur||!S.sups.some(function(s){return s.id===S.cur}))S.cur=S.sups[0].id;if(!S.home)S.home=[];if(!S.udhar)S.udhar=[];if(S.pocket==null)S.pocket=0}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function esc(t){return String(t==null?"":t).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function rs(n){return "₹"+Math.round(n*100)/100 .toLocaleString("en-IN")}
+function money(n){n=Math.round(n*100)/100;return "₹"+n.toLocaleString("en-IN")}
+function dmy(d){var p=d.split("-");return p[2]+"-"+p[1]+"-"+p[0]}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function uid(){return "e"+Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function sup(){return S.sups.filter(function(s){return s.id===S.cur})[0]}
+function amt(e){return e.type==="buy"?e.qty*e.rate:e.amt}
+var MN=["जनवरी","फ़रवरी","मार्च","अप्रैल","मई","जून","जुलाई","अगस्त","सितंबर","अक्टूबर","नवंबर","दिसंबर"];
+var period="all",lastPay="";
+function toast(t){var x=$("toast");x.textContent=t;x.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(function(){x.style.display="none"},1800)}
+
+function render(){
+ var s=sup(),all=S.ents.filter(function(e){return e.sid===s.id}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:(a.ts||0)-(b.ts||0)});
+ var sel=$("sup");sel.innerHTML=S.sups.map(function(x){return '<option value="'+x.id+'"'+(x.id===s.id?" selected":"")+">"+esc(x.name)+"</option>"}).join("");
+ var months={};all.forEach(function(e){months[e.date.slice(0,7)]=1});
+ var ml=Object.keys(months).sort().reverse();
+ if(period!=="all"&&!months[period])period="all";
+ $("per").innerHTML='<option value="all">पूरा हिसाब</option>'+ml.map(function(m){var p=m.split("-");return '<option value="'+m+'"'+(m===period?" selected":"")+">"+MN[+p[1]-1]+" "+p[0]+"</option>"}).join("");
+ var before=0,list=all;
+ if(period!=="all"){
+  list=all.filter(function(e){return e.date.slice(0,7)===period});
+  all.forEach(function(e){if(e.date.slice(0,7)<period)before+=e.type==="buy"?amt(e):-amt(e)});
+ }
+ var prev=(+s.open||0)+(period==="all"?0:before);
+ var buy=0,pay=0;list.forEach(function(e){if(e.type==="buy")buy+=amt(e);else pay+=amt(e)});
+ var due=prev+buy-pay;
+ var lp="";all.forEach(function(e){if(e.type==="pay")lp=e.date});
+ lastPay=lp;
+ var h='<span class="pill">SUPPLIER HISAB / STATEMENT</span><h1>5 Brother’s Fitness Club</h1><div class="addr">उमराव खेड़ा, अकबरपुर, उन्नाव | Ph: 9140417259</div><hr class="dash">';
+ h+='<div class="row"><span>सप्लायर नाम</span><b>'+esc(s.name)+'</b></div>';
+ if(s.mobile)h+='<div class="row"><span>मोबाइल</span><b>'+esc(s.mobile)+'</b></div>';
+ h+='<div class="row"><span>स्टेटमेंट</span><b>'+(period==="all"?"पूरा हिसाब":MN[+period.slice(5)-1]+" "+period.slice(0,4))+'</b></div>';
+ h+='<hr class="dash"><div class="sec">खरीदे गए आइटम्स का विवरण:</div>';
+ if(prev||period!=="all")h+='<div class="prev"><div><b style="font-size:15px">'+(period==="all"?"पुराना बकाया (शुरुआती)":"पिछला बकाया")+'</b>'+(period==="all"?"":'<small>इस महीने से पहले तक</small>')+'</div><b>'+money(prev)+'</b></div>';
+ h+='<div class="head"><span>विवरण (Item)</span><span>मात्रा</span><span>रेट</span><span>कुल</span></div>';
+ if(!list.length)h+='<div class="empty">अभी कोई एंट्री नहीं है।<br>नीचे “माल लिया” दबाकर पहला आइटम जोड़ें।</div>';
+ list.forEach(function(e){
+  if(e.type==="buy")h+='<button class="it" data-id="'+e.id+'"><span><span class="d">'+dmy(e.date)+'</span><span class="n">'+esc(e.item)+'</span></span><span>'+e.qty+'</span><span>'+money(e.rate)+'</span><span class="t">'+money(amt(e))+'</span></button>';
+  else h+='<button class="pay" data-id="'+e.id+'"><span><span class="d">'+dmy(e.date)+' · भुगतान दिया'+(e.note?" · "+esc(e.note):"")+'</span></span><b>− '+money(e.amt)+'</b></button>';
+ });
+ h+='<hr class="dash">';
+ h+='<div class="tot"><span>इस बार के नए माल का कुल</span><b>'+money(buy)+'</b></div>';
+ h+='<div class="tot"><span>+ पिछला बकाया</span><b>'+money(prev)+'</b></div>';
+ h+='<div class="tot"><span>− भुगतान दिए</span><b>'+money(pay)+'</b></div>';
+ h+='<div class="tot"><span>आखिरी भुगतान तिथि</span><b>'+(lp?dmy(lp):"—")+'</b></div>';
+ h+='<div class="due'+(due<=0?" ok":"")+'"><span>शेष बकाया (Due):</span><b>'+money(due)+'</b></div>';
+ h+='<div class="act"><button id="wa">WhatsApp</button><button id="cp">कॉपी</button><button id="pr">प्रिंट</button><button id="es">सप्लायर बदलें</button></div>';
+ $("stmt").innerHTML=h;
+ $("stmt")._txt=text(s,list,prev,buy,pay,due,lp);
+}
+function text(s,list,prev,buy,pay,due,lp){
+ var t="*5 Brother’s Fitness Club*\nसप्लायर हिसाब: "+s.name+"\n";
+ if(prev)t+="पिछला बकाया: "+money(prev)+"\n";
+ t+="\n";
+ list.forEach(function(e){t+=e.type==="buy"?dmy(e.date)+" "+e.item+" "+e.qty+" x "+money(e.rate)+" = "+money(amt(e))+"\n":dmy(e.date)+" भुगतान − "+money(e.amt)+"\n"});
+ t+="\nनया माल: "+money(buy)+"\nभुगतान: "+money(pay)+"\n*शेष बकाया: "+money(prev+buy-pay)+"*";
+ return t}
+
+function open_(h){$("sheet").innerHTML=h;$("ov").classList.add("on")}
+function close_(){$("ov").classList.remove("on")}
+function items(){var m={};S.ents.forEach(function(e){if(e.type==="buy")m[e.item]=e.rate});return m}
+
+function buyForm(id,keepDate){
+ var e=id?S.ents.filter(function(x){return x.id===id})[0]:null,im=items();
+ var h='<h2>'+(e?"माल बदलें":"माल लिया")+'</h2><label>तारीख</label><input type="date" id="fd" value="'+(e?e.date:(keepDate||today()))+'">';
+ h+='<label>आइटम और ब्रांड</label><input id="fi" list="il" placeholder="जैसे: Fuel Whey" value="'+esc(e?e.item:"")+'" autocomplete="off"><datalist id="il">'+Object.keys(im).map(function(k){return '<option value="'+esc(k)+'">'}).join("")+'</datalist>';
+ h+='<div class="g2"><div><label>मात्रा</label><input id="fq" type="number" inputmode="decimal" min="0" step="any" value="'+(e?e.qty:1)+'"></div><div><label>रेट (₹)</label><input id="fr" type="number" inputmode="decimal" min="0" step="any" value="'+(e?e.rate:"")+'"></div></div>';
+ h+='<div class="live" id="fl"></div><div class="sb">'+(e?'<button class="del" id="fx">हटाएँ</button>':'<button class="sec2" id="fn">सेव + अगला</button>')+'<button class="sv" id="fs">सेव करें</button></div>';
+ open_(h);
+ function lv(){$("fl").textContent="कुल: "+money((+$("fq").value||0)*(+$("fr").value||0))}
+ $("fq").oninput=lv;$("fr").oninput=lv;lv();
+ $("fi").onchange=function(){if(im[this.value]!=null&&!$("fr").value){$("fr").value=im[this.value];lv()}};
+ function go(next){
+  var it=$("fi").value.trim(),q=+$("fq").value,r=+$("fr").value,d=$("fd").value;
+  if(!it||!(q>0)||!(r>=0)||$("fr").value===""||!d){toast("आइटम, मात्रा और रेट भरें");return}
+  if(e){e.date=d;e.item=it;e.qty=q;e.rate=r}else S.ents.push({id:uid(),ts:Date.now(),sid:S.cur,type:"buy",date:d,item:it,qty:q,rate:r});
+  save();render();toast("सेव हो गया");
+  if(next&&!e)buyForm(null,d);else close_()}
+ $("fs").onclick=function(){go(false)};
+ if($("fn"))$("fn").onclick=function(){go(true)};
+ if($("fx"))$("fx").onclick=function(){if(confirm("यह एंट्री हटाएँ?")){S.ents=S.ents.filter(function(x){return x.id!==id});save();render();close_()}};
+}
+function payForm(id){
+ var e=id?S.ents.filter(function(x){return x.id===id})[0]:null;
+ var h='<h2>'+(e?"भुगतान बदलें":"भुगतान दिया")+'</h2><label>तारीख</label><input type="date" id="pd" value="'+(e?e.date:today())+'"><label>रकम (₹)</label><input id="pa" type="number" inputmode="decimal" min="0" step="any" value="'+(e?e.amt:"")+'"><label>नोट (कैश / UPI, वैकल्पिक)</label><input id="pn" value="'+esc(e?e.note:"")+'">';
+ h+='<div class="sb">'+(e?'<button class="del" id="px">हटाएँ</button>':"")+'<button class="sv" id="ps">सेव करें</button></div>';
+ open_(h);
+ $("ps").onclick=function(){var a=+$("pa").value,d=$("pd").value;if(!(a>0)||!d){toast("रकम और तारीख भरें");return}
+  if(e){e.date=d;e.amt=a;e.note=$("pn").value.trim()}else S.ents.push({id:uid(),ts:Date.now(),sid:S.cur,type:"pay",date:d,amt:a,note:$("pn").value.trim()});
+  save();render();close_();toast("सेव हो गया")};
+ if($("px"))$("px").onclick=function(){if(confirm("यह भुगतान हटाएँ?")){S.ents=S.ents.filter(function(x){return x.id!==id});save();render();close_()}};
+}
+function supForm(edit){
+ var s=edit?sup():{name:"",mobile:"",open:0};
+ var h='<h2>'+(edit?"सप्लायर बदलें":"नया सप्लायर")+'</h2><label>नाम</label><input id="sn" value="'+esc(s.name)+'"><label>मोबाइल</label><input id="sm" type="tel" inputmode="tel" value="'+esc(s.mobile)+'"><label>शुरुआती पुराना बकाया (₹)</label><input id="so" type="number" inputmode="decimal" step="any" value="'+(s.open||"")+'"><p class="hint">ऐप शुरू करने से पहले का जो बकाया है, वह यहाँ डालें।</p>';
+ h+='<div class="sb">'+(edit&&S.sups.length>1?'<button class="del" id="sx">हटाएँ</button>':"")+'<button class="sv" id="ss">सेव करें</button></div>';
+ open_(h);
+ $("ss").onclick=function(){var n=$("sn").value.trim();if(!n){toast("नाम भरें");return}
+  if(edit){s.name=n;s.mobile=$("sm").value.trim();s.open=+$("so").value||0}
+  else{var x={id:"s"+Date.now().toString(36),name:n,mobile:$("sm").value.trim(),open:+$("so").value||0};S.sups.push(x);S.cur=x.id;period="all"}
+  save();render();close_()};
+ if($("sx"))$("sx").onclick=function(){if(confirm("इस सप्लायर और उसकी सारी एंट्री हटाएँ?")){var id=S.cur;S.ents=S.ents.filter(function(e){return e.sid!==id});S.sups=S.sups.filter(function(x){return x.id!==id});S.cur=S.sups[0].id;save();render();close_()}};
+}
+function menu(){
+ var h='<h2>बैकअप</h2><p class="hint" style="margin-top:0">डेटा इसी फ़ोन के ब्राउज़र में रहता है। ब्राउज़र का डेटा साफ़ करने पर मिट सकता है, इसलिए बीच-बीच में नीचे का कोड कॉपी करके WhatsApp या Notes में रख लें।</p><label>बैकअप कोड</label><textarea id="bk" rows="5" readonly>'+esc(JSON.stringify(S))+'</textarea><div class="sb"><button class="sec2" id="bc">कोड कॉपी करें</button></div><label>बैकअप से वापस लाएँ (कोड यहाँ चिपकाएँ)</label><textarea id="bi" rows="3"></textarea><div class="sb"><button class="sv" id="br">वापस लाएँ</button></div>';
+ open_(h);
+ $("bc").onclick=function(){copy($("bk").value)};
+ $("br").onclick=function(){try{var d=JSON.parse($("bi").value);if(!d.sups||!d.ents)throw 0;if(!confirm("मौजूदा डेटा बदल जाएगा। जारी रखें?"))return;S=d;load();save();render();close_();toast("डेटा वापस आ गया")}catch(x){toast("कोड सही नहीं है")}};
+}
+function copy(t){
+ function fb(){var a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("कॉपी हो गया")}catch(e){toast("कॉपी नहीं हुआ")}a.remove()}
+ try{navigator.clipboard.writeText(t).then(function(){toast("कॉपी हो गया")},fb)}catch(e){fb()}}
+
+$("sup").onchange=function(){S.cur=this.value;period="all";save();render()};
+$("per").onchange=function(){period=this.value;render()};
+$("addSup").onclick=function(){supForm(false)};
+$("menu").onclick=menu;
+$("bBuy").onclick=function(){buyForm()};
+$("bPay").onclick=function(){payForm()};
+$("ov").onclick=function(e){if(e.target===this)close_()};
+$("stmt").onclick=function(e){
+ var t=e.target.closest("button");if(!t)return;
+ if(t.dataset.id){var en=S.ents.filter(function(x){return x.id===t.dataset.id})[0];if(en)en.type==="buy"?buyForm(en.id):payForm(en.id);return}
+ if(t.id==="wa")window.open("https://wa.me/?text="+encodeURIComponent($("stmt")._txt),"_blank");
+ else if(t.id==="cp")copy($("stmt")._txt);
+ else if(t.id==="pr")window.print();
+ else if(t.id==="es")supForm(true)};
+var CAT={family:"👨‍👩‍👧 फैमिली",ghar:"🏠 घर का सामान",other:"📦 अन्य",income:"💵 मिले",udhar:"🤝 उधार"};
+var tab="S",hsub="list",hdate=today(),rf=today().slice(0,8)+"01",rt=today();
+function nowT(){var d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
+function setTab(t){tab=t;$("vS").style.display=t==="S"?"":"none";$("vH").style.display=t==="H"?"":"none";$("fabS").style.display=t==="S"?"":"none";$("fabH").style.display=t==="H"?"":"none";$("tS").className=t==="S"?"on":"";$("tH").className=t==="H"?"on":"";if(t==="H")renderHome()}
+function pocketNow(){var p=+S.pocket||0;S.home.forEach(function(e){if(e.mode==="cash")p+=e.kind==="in"?e.amt:-e.amt});return p}
+function eRow(e){var n=e.kind==="in";return '<button class="ge" data-hid="'+e.id+'"><span><b>'+esc(e.name||CAT[e.cat])+'</b><small>'+CAT[e.cat]+' · '+(e.mode==="cash"?"💵 Cash":"📱 Online")+' · '+e.time+(e.note?' · '+esc(e.note):'')+'</small></span><b class="'+(n?"gi":"go")+'">'+(n?"+ ":"− ")+money(e.amt)+'</b></button>'}
+function renderHome(){
+ var t=today(),tin=0,tout=0,lena=0,dena=0;
+ S.home.forEach(function(e){if(e.date===t){if(e.kind==="in")tin+=e.amt;else tout+=e.amt}});
+ S.udhar.forEach(function(u){if(!u.done){if(u.dir==="lena")lena+=u.amt;else dena+=u.amt}});
+ var h='<span class="pill">DAILY KHARCHA</span><h1>घर खर्च</h1><div class="addr">Pocket · Family · Ghar · Personal</div>';
+ h+='<button class="pk" id="pk"><small>💵 Pocket Cash (बदलने के लिए टैप करें)</small><b>'+money(pocketNow())+'</b></button>';
+ h+='<div class="g2 st"><div class="gi"><small>आज मिला</small><b>'+money(tin)+'</b></div><div class="go"><small>आज दिया</small><b>'+money(tout)+'</b></div><div><small>उधार लेना है (मिलना है)</small><b>'+money(lena)+'</b></div><div><small>उधार देना है (देना है)</small><b>'+money(dena)+'</b></div></div>';
+ h+='<div class="stab">'+[["list","📒 लिस्ट"],["ud","💳 उधार"],["rep","📊 रिपोर्ट"]].map(function(x){return '<button data-s="'+x[0]+'"'+(hsub===x[0]?' class="on"':'')+'>'+x[1]+'</button>'}).join("")+'</div>';
+ if(hsub==="list"){
+  var l=S.home.filter(function(e){return e.date===hdate}).sort(function(a,b){return a.time<b.time?-1:a.time>b.time?1:a.ts-b.ts});
+  h+='<label>तारीख</label><input type="date" id="hd" value="'+hdate+'">';
+  h+=l.length?l.map(eRow).join(""):'<div class="empty">इस दिन कोई एंट्री नहीं है।</div>';
+ }else if(hsub==="ud"){
+  h+='<div class="g2"><button class="sv" id="ul" style="padding:12px 4px;font-weight:700">📥 उधार लेना है</button><button class="sec2" id="ud" style="padding:12px 4px;font-weight:700">📤 उधार देना है</button></div>';
+  var p=S.udhar.filter(function(u){return !u.done}).sort(function(a,b){return a.due<b.due?-1:1});
+  h+='<div class="sec">पेंडिंग उधार</div>';
+  h+=p.length?p.map(function(u){var late=u.due&&u.due<today();return '<div class="ud'+(late?' late':'')+'"><div class="r"><b>'+esc(u.name)+'</b><b class="'+(u.dir==="lena"?"gi":"go")+'">'+money(u.amt)+'</b></div><small>'+(u.dir==="lena"?"मुझे वापस मिलना है":"मुझे वापस देना है")+' · दिया/लिया '+dmy(u.date)+'<br>वापसी: '+(u.due?dmy(u.due):"—")+(late?' · ⚠️ देर हो गई':'')+(u.why?'<br>'+esc(u.why):'')+'</small><div class="bt"><button data-done="'+u.id+'">'+(u.dir==="lena"?"पैसे वापस मिले":"पैसे वापस दिए")+'</button><button data-udel="'+u.id+'">हटाएँ</button></div></div>'}).join(""):'<div class="empty">कोई पेंडिंग उधार नहीं है।</div>';
+ }else{
+  var r=S.home.filter(function(e){return e.date>=rf&&e.date<=rt}).sort(function(a,b){return a.date<b.date?-1:a.date>b.date?1:a.ts-b.ts});
+  var i2=0,o2=0,bc={};r.forEach(function(e){if(e.kind==="in")i2+=e.amt;else{o2+=e.amt;bc[e.cat]=(bc[e.cat]||0)+e.amt}});
+  h+='<div class="g2"><div><label>From</label><input type="date" id="rf" value="'+rf+'"></div><div><label>To</label><input type="date" id="rt" value="'+rt+'"></div></div>';
+  h+='<div class="tot"><span>कुल मिला</span><b class="gi">'+money(i2)+'</b></div><div class="tot"><span>कुल दिया / खर्च</span><b class="go">'+money(o2)+'</b></div>';
+  Object.keys(bc).forEach(function(k){h+='<div class="row"><span>'+CAT[k]+'</span><b>'+money(bc[k])+'</b></div>'});
+  h+='<div class="tot"><span>बचत / फर्क</span><b>'+money(i2-o2)+'</b></div>';
+  h+=r.map(function(e){return '<div class="ge" style="cursor:default"><span><b>'+esc(e.name||CAT[e.cat])+'</b><small>'+dmy(e.date)+' · '+CAT[e.cat]+(e.note?' · '+esc(e.note):'')+'</small></span><b class="'+(e.kind==="in"?"gi":"go")+'">'+(e.kind==="in"?"+ ":"− ")+money(e.amt)+'</b></div>'}).join("");
+  h+='<div class="act"><button id="rc">रिपोर्ट कॉपी</button><button id="rp">प्रिंट</button></div>';
+  var tx="घर खर्च रिपोर्ट "+dmy(rf)+" से "+dmy(rt)+"\nमिला: "+money(i2)+"\nखर्च: "+money(o2)+"\n\n";r.forEach(function(e){tx+=dmy(e.date)+" "+(e.kind==="in"?"+":"−")+money(e.amt)+" "+(e.name||CAT[e.cat])+"\n"});$("vH")._txt=tx;
+ }
+ $("vH").innerHTML=h;
+}
+function addRow(n,a){var d=document.createElement("div");d.className="rw";d.innerHTML='<input class="kn" placeholder="नाम / सामान" value="'+esc(n||"")+'"><input class="ka" type="number" inputmode="decimal" min="0" step="any" placeholder="₹" value="'+(a||"")+'">';$("rows").appendChild(d)}
+function kForm(kind,id){
+ var e=id?S.home.filter(function(x){return x.id===id})[0]:null;if(e)kind=e.kind;
+ var inn=kind==="in",u=e&&e.cat==="udhar";
+ var h='<h2>'+(e?"एंट्री बदलें":inn?"➕ पैसे मिले":"➖ खर्च / पैसे दिए")+'</h2>';
+ if(!inn&&!u)h+='<label>कैटेगरी</label><select id="kc">'+["family","ghar","other"].map(function(c){return '<option value="'+c+'"'+(e&&e.cat===c?' selected':'')+'>'+CAT[c]+'</option>'}).join("")+'</select>';
+ h+='<label>Cash / Online</label><select id="km"><option value="cash">💵 Cash</option><option value="online"'+(e&&e.mode==="online"?' selected':'')+'>📱 Online / UPI</option></select>';
+ h+='<div class="g2"><div><label>तारीख</label><input type="date" id="kd" value="'+(e?e.date:today())+'"></div><div><label>समय</label><input type="time" id="kt" value="'+(e?e.time:nowT())+'"></div></div>';
+ h+='<label>'+(inn?"किससे मिले और रकम":"नाम और रकम")+'</label><div id="rows"></div>'+(e?'':'<button class="sec2" id="ka" style="width:100%;padding:10px">➕ और नाम जोड़ें</button>');
+ h+='<label>कारण / नोट (सब पर लगेगा)</label><input id="kn" value="'+esc(e?e.note:"")+'">';
+ h+='<div class="sb">'+(e?'<button class="del" id="kx">हटाएँ</button>':'')+'<button class="sv" id="ks">सेव करें</button></div>';
+ open_(h);addRow(e?e.name:"",e?e.amt:"");
+ if($("ka"))$("ka").onclick=function(){addRow()};
+ $("ks").onclick=function(){
+  var ns=document.querySelectorAll(".kn"),as=document.querySelectorAll(".ka"),d=$("kd").value,tm=$("kt").value||nowT(),n=0;
+  var cat=$("kc")?$("kc").value:(e?e.cat:"income");
+  for(var i=0;i<as.length;i++){var a=+as[i].value;if(!(a>0))continue;n++;
+   var o={date:d,time:tm,kind:kind,cat:cat,name:ns[i].value.trim(),amt:a,mode:$("km").value,note:$("kn").value.trim()};
+   if(e)Object.assign(e,o);else S.home.push(Object.assign({id:uid(),ts:Date.now()+i},o))}
+  if(!n||!d){toast("रकम और तारीख भरें");return}
+  save();hdate=d;hsub="list";renderHome();close_();toast("सेव हो गया")};
+ if($("kx"))$("kx").onclick=function(){if(confirm("यह एंट्री हटाएँ?")){S.home=S.home.filter(function(x){return x.id!==id});save();renderHome();close_()}};
+}
+function addDays(d,n){var x=new Date(d+"T12:00:00");x.setDate(x.getDate()+n);return x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0")}
+function uForm(dir){
+ var h='<h2>'+(dir==="lena"?"📥 उधार लेना है (वापस मिलना है)":"📤 उधार देना है (वापस देना है)")+'</h2><label>नाम</label><input id="un"><label>रकम (₹)</label><input id="ua" type="number" inputmode="decimal" min="0" step="any"><label>Cash / Online</label><select id="um"><option value="cash">💵 Cash</option><option value="online">📱 Online</option></select><label>किस लिए / नोट</label><input id="uw"><div class="g2"><div><label>कब दिया / लिया</label><input type="date" id="ud1" value="'+today()+'"></div><div><label>वापसी कब</label><input type="date" id="ud2"></div></div><div class="sb"><button class="sec2" data-p="7">+7 दिन</button><button class="sec2" data-p="15">+15 दिन</button><button class="sec2" data-p="30">+30 दिन</button></div><div class="sb"><button class="sv" id="us">सेव करें</button></div>';
+ open_(h);
+ document.querySelectorAll("[data-p]").forEach(function(b){b.onclick=function(){$("ud2").value=addDays($("ud1").value||today(),+b.dataset.p)}});
+ $("us").onclick=function(){var nm=$("un").value.trim(),a=+$("ua").value,d=$("ud1").value,du=$("ud2").value;
+  if(!nm||!(a>0)||!d||!du){toast("नाम, रकम और वापसी की तारीख भरें");return}
+  var u={id:uid(),ts:Date.now(),dir:dir,name:nm,amt:a,mode:$("um").value,why:$("uw").value.trim(),date:d,due:du,done:false};
+  S.udhar.push(u);
+  S.home.push({id:uid(),ts:Date.now(),ref:u.id,date:d,time:nowT(),kind:dir==="lena"?"out":"in",cat:"udhar",name:nm,amt:a,mode:u.mode,note:"उधार "+(dir==="lena"?"दिया":"लिया")+(u.why?" · "+u.why:"")});
+  save();hsub="ud";renderHome();close_();toast("सेव हो गया")};
+}
+function udDone(id){var u=S.udhar.filter(function(x){return x.id===id})[0];if(!u||!confirm("वापसी की एंट्री बना दें?"))return;u.done=true;
+ S.home.push({id:uid(),ts:Date.now(),ref:u.id,date:today(),time:nowT(),kind:u.dir==="lena"?"in":"out",cat:"udhar",name:u.name,amt:u.amt,mode:u.mode,note:"उधार वापस"});save();renderHome();toast("हो गया")}
+$("tS").onclick=function(){setTab("S")};
+$("tH").onclick=function(){setTab("H")};
+$("hIn").onclick=function(){kForm("in")};
+$("hOut").onclick=function(){kForm("out")};
+$("vH").onclick=function(e){var b=e.target.closest("button");if(!b)return;
+ if(b.dataset.s){hsub=b.dataset.s;renderHome();return}
+ if(b.dataset.hid){kForm(null,b.dataset.hid);return}
+ if(b.dataset.done){udDone(b.dataset.done);return}
+ if(b.dataset.udel){if(confirm("यह उधार और इसकी एंट्री हटाएँ?")){var i=b.dataset.udel;S.udhar=S.udhar.filter(function(x){return x.id!==i});S.home=S.home.filter(function(x){return x.ref!==i});save();renderHome()}return}
+ if(b.id==="pk"){var v=prompt("अभी जेब में कितना कैश है? (₹)",pocketNow());if(v!==null&&v.trim()!==""&&!isNaN(+v)){S.pocket=(+S.pocket||0)+(+v-pocketNow());save();renderHome()}return}
+ if(b.id==="ul")uForm("lena");else if(b.id==="ud")uForm("dena");
+ else if(b.id==="rc")copy($("vH")._txt);else if(b.id==="rp")window.print()};
+$("vH").onchange=function(e){var i=e.target.id;if(i==="hd"&&e.target.value){hdate=e.target.value;renderHome()}else if(i==="rf"&&e.target.value){rf=e.target.value;renderHome()}else if(i==="rt"&&e.target.value){rt=e.target.value;renderHome()}};
+load();render();setTab("H");
+</script>
+</body>
+</html>
